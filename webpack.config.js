@@ -3,7 +3,8 @@ const path = require('path')
 module.exports = {
   target: 'electron',
   node: {
-    fs: 'empty'
+    __dirname: false,
+    __filename: false
   },
   entry: {
     'main/index': path.join(__dirname, 'src/main/index.js'),
