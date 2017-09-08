@@ -1,12 +1,13 @@
 const path = require('path')
 const Application = require('spectron').Application
-const electron = require('electron')
 
-const createApp = (args) => {
-  const baseDir = path.join(__dirname, '../..')
+const createApp = () => {
+  const electronPath = path.resolve(__dirname, '../../node_modules/.bin/electron')
+  const appPath = path.resolve(__dirname, '../..')
+
   return new Application({
-    path: electron,
-    args: [baseDir].concat(args)
+    path: electronPath,
+    args: [appPath]
   })
 }
 

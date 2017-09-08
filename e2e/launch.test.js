@@ -6,8 +6,12 @@ test.beforeEach(async t => {
   await t.context.app.start()
 })
 
-test.afterEach(async t => {
-  await t.context.app.stop()
+test.afterEach.always(async t => {
+  try {
+    await t.context.app.stop()
+  } catch (error) {
+    console.log('error occured while quitting: \n', error)
+  }
 })
 
 test('Launching the app renders a window', async t => {
