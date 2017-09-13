@@ -8,7 +8,7 @@ module.exports = {
   },
   entry: {
     'main/index': path.join(__dirname, 'src/main/index.js'),
-    'renderer/app': path.join(__dirname, 'src/renderer/app.js')
+    'renderer/index': path.join(__dirname, 'src/renderer/index.js')
   },
   output: {
     filename: 'dist/[name].js'
@@ -20,6 +20,10 @@ module.exports = {
         test: /.jsx?$/,
         exclude: /node_modules/,
         loader: 'babel-loader'
+      },
+      {
+        test: /\.css$/,
+        use: [ 'style-loader', 'css-loader' ]
       }
     ]
   }
