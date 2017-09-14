@@ -50,6 +50,7 @@
     "react-addons-test-utils": "^15.6.0",
     "spectron": "^3.7.2",
     "standard": "^10.0.3",
+    "styled-components": "^2.1.2",
     "webpack": "^3.5.5"
   },
   "dependencies": {
