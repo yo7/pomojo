@@ -44,6 +44,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "babel-register": "^6.26.0",
     "chai": "^4.1.2",
+    "devtron": "^1.4.0",
     "electron": "^1.7.5",
     "enzyme": "^2.9.1",
     "jest": "^20.0.4",
