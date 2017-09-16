@@ -7,9 +7,9 @@
     "start": "electron .",
     "build": "webpack",
     "build:watch": "webpack --watch",
-    "lint": "standard",
-    "lint:fix": "standard --fix",
-    "test": "npm run test:e2e && npm run test:unit",
+    "lint": "xo --silent",
+    "lint:fix": "xo --fix",
+    "test": "npm run lint && npm run test:e2e && npm run test:unit",
     "test:e2e": "NODE_ENV=test ava e2e/**/*.test.js",
     "test:unit": "NODE_ENV=test ava src/**/*.test.js"
   },
@@ -23,10 +23,16 @@
     "url": "https://github.com/yo7/pomojuice/issues"
   },
   "homepage": "https://github.com/yo7/pomojuice#readme",
-  "standard": {
-    "env": [
-      "jest"
-    ]
+  "xo": {
+    "envs": [
+      "node",
+      "browser"
+    ],
+    "rules": {
+      "no-use-before-define": ["error", { "functions": false, "classes": true, "variables": false}]
+    },
+    "space": true,
+    "semicolon": false
   },
   "ava": {
     "babel": "inherit",
@@ -52,7 +58,8 @@
     "spectron": "^3.7.2",
     "standard": "^10.0.3",
     "styled-components": "^2.1.2",
-    "webpack": "^3.5.5"
+    "webpack": "^3.5.5",
+    "xo": "^0.18.2"
   },
   "dependencies": {
     "react": "^15.6.1",

@@ -14,18 +14,10 @@ test.afterEach.always(async t => {
   }
 })
 
-test('Launching the app renders a window', async t => {
+test('Window should not be resizable', async t => {
   const app = t.context.app
   await app.client.waitUntilWindowLoaded()
-
-  t.is(await app.client.getWindowCount(), 1)
+  t.is(await app.browserWindow.isResizable(), false)
 })
 
-test('Launching the app renders a window with specified size', async t => {
-  const app = t.context.app
-  await app.client.waitUntilWindowLoaded()
-
-  const {width, height} = await app.browserWindow.getBounds()
-  t.is(width, 500)
-  t.is(height, 600)
-})
+test.todo('window should be hidden on blur')
