@@ -10,8 +10,8 @@
     "lint": "xo --silent",
     "lint:fix": "xo --fix",
     "test": "npm run lint && npm run test:e2e && npm run test:unit",
-    "test:e2e": "NODE_ENV=test ava e2e/**/*.test.js",
-    "test:unit": "NODE_ENV=test ava src/**/*.test.js"
+    "test:e2e": "NODE_ENV=test ELECTRON_IS_DEV=false ava e2e/**/*.test.js",
+    "test:unit": "NODE_ENV=test ELECTRON_IS_DEV=false ava src/**/*.test.js"
   },
   "repository": {
     "type": "git",
@@ -29,7 +29,14 @@
       "browser"
     ],
     "rules": {
-      "no-use-before-define": ["error", { "functions": false, "classes": true, "variables": false}]
+      "no-use-before-define": [
+        "error",
+        {
+          "functions": false,
+          "classes": true,
+          "variables": false
+        }
+      ]
     },
     "space": true,
     "semicolon": false
@@ -62,6 +69,7 @@
     "xo": "^0.18.2"
   },
   "dependencies": {
+    "electron-is-dev": "^0.3.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
   }
