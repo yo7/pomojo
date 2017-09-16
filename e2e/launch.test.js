@@ -26,6 +26,6 @@ test('Launching the app renders a window with specified size', async t => {
   await app.client.waitUntilWindowLoaded()
 
   const {width, height} = await app.browserWindow.getBounds()
-  t.is(width, 500)
-  t.is(height, 600)
+  t.is(width, 320)
+  t.is(height, 450)
 })
