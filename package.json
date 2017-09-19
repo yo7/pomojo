@@ -27,19 +27,7 @@
     "envs": [
       "node",
       "browser"
-    ],
-    "rules": {
-      "no-use-before-define": [
-        "error",
-        {
-          "functions": false,
-          "classes": true,
-          "variables": false
-        }
-      ]
-    },
-    "space": true,
-    "semicolon": false
+    ]
   },
   "ava": {
     "babel": "inherit",
@@ -71,6 +59,7 @@
   "dependencies": {
     "electron-is-dev": "^0.3.0",
     "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "react-dom": "^15.6.1",
+    "vue": "^2.4.4"
   }
 }
