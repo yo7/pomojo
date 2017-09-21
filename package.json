@@ -34,19 +34,19 @@
       "node",
       "browser"
     ],
-    "space": true, 
+    "space": true,
     "semicolon": false,
-    "rules": { 
+    "rules": {
       "no-new": 0,
-      "no-use-before-define": [ 
-        "error", 
-        { 
-          "functions": false, 
-          "classes": true, 
-          "variables": false 
-        } 
-      ] 
-    } 
+      "no-use-before-define": [
+        "error",
+        {
+          "functions": false,
+          "classes": true,
+          "variables": false
+        }
+      ]
+    }
   },
   "ava": {
     "babel": "inherit",
@@ -67,6 +67,8 @@
     "devtron": "^1.4.0",
     "electron": "^1.7.5",
     "jest": "^20.0.4",
+    "node-sass": "^4.5.3",
+    "sass-loader": "^6.0.6",
     "spectron": "^3.7.2",
     "standard": "^10.0.3",
     "vue-loader": "^13.0.5",

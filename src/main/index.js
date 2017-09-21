@@ -21,15 +21,18 @@ const initWindow = (withDock = false) => {
     width: 320,
     frame: false,
     resizable: false,
-    show: false
+    show: false,
+    transparent: true
   }
   window = new BrowserWindow(config)
   const document = `file://${__dirname}/../../index.html`
   window.loadURL(document)
-  window.on('blur', () => window.hide())
 
   showWindow()
 
+  if (!isDev) {
+    window.on('blur', () => window.hide())
+  }
   if (isDev) {
     dev.openTool(window)
   }

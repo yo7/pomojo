@@ -11,7 +11,7 @@ import TimerButton from './timer-button'
 
 export default {
   components: {
-    'timer-counter': Counter,
+    'timer-counter': TimerCounter,
     'timer-button': TimerButton
   }
 }
