@@ -30,5 +30,8 @@ module.exports = {
       }
     ]
   },
+  resolve: {
+    extensions: ['.js', '.vue']
+  },
   devtool: 'inline-source-map'
 }

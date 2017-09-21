@@ -1,14 +1,14 @@
 <template>
-  <div>{{ msg }}</div>
+  <timer-board></timer-board>
 </template>
 
 <script>
+import TimerBoard from './components/timer/timer-board'
+
 export default {
   name: 'app',
-  data() {
-    return {
-      msg: 'this is a message'
-    }
+  components: {
+    'timer-board': TimerBoard
   }
 }
 </script>

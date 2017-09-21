@@ -36,9 +36,17 @@
     ],
     "space": true, 
     "semicolon": false,
-    "rules": {
-      "no-new": 0
-    }
+    "rules": { 
+      "no-new": 0,
+      "no-use-before-define": [ 
+        "error", 
+        { 
+          "functions": false, 
+          "classes": true, 
+          "variables": false 
+        } 
+      ] 
+    } 
   },
   "ava": {
     "babel": "inherit",

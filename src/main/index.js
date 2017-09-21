@@ -11,7 +11,7 @@ app.on('ready', () => {
   initWindow()
 })
 
-function initWindow(withDock = false) {
+const initWindow = (withDock = false) => {
   if (withDock === false) {
     app.dock.hide()
   }
@@ -35,25 +35,24 @@ function initWindow(withDock = false) {
   }
 }
 
-function initTray() {
+const initTray = () => {
   const image = 'juiceTemplate.png'
   const imagePath = path.join(__dirname, `../../assets/${image}`)
   tray = new Tray(imagePath)
   tray.on('click', () => toggleWindow())
 }
 
-function toggleWindow() {
-  return window.isFocused() ? window.hide() : showWindow()
-}
+const toggleWindow = () =>
+  window.isFocused() ? window.hide() : showWindow()
 
-function showWindow() {
+const showWindow = () => {
   const position = getWindowPosition()
   window.setPosition(position.x, position.y, false)
   window.show()
   window.focus()
 }
 
-function getWindowPosition() {
+const getWindowPosition = () => {
   const windowBounds = window.getBounds()
   const trayBounds = tray.getBounds()
 
