@@ -9,9 +9,7 @@ import TimerBoard from './components/timer/timer-board'
 
 export default {
   name: 'app',
-  components: {
-    'timer-board': TimerBoard
-  }
+  components: { TimerBoard }
 }
 </script>
 
