@@ -50,7 +50,9 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import '../../style/color.scss';
+
 .timer-button {
   display: flex;
   height: 20%;
@@ -59,7 +61,7 @@ export default {
 }
 
 .icon {
-  color: var(--primary-text);
+  color: $primary-text;
   border-radius: 50%;
   padding: 10px;
   width: 3rem;
@@ -67,23 +69,23 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: 0.5s;
-}
+  transition: background-color 0.5s;
 
-.icon:before {
-  font-size: 3rem;
-  transition: 0.5s;
-}
+  &:before {
+    transition: font-size 0.5s;
+    font-size: 3rem;
+  }
 
-.icon.fa-play:before {
-  margin-left: 0.5rem;
-}
+  &.fa-play:before {
+    margin-left: 0.5rem;
+  }
 
-.icon:hover {
-  background-color: #dadada;
-}
+  &:hover {
+    background-color: $effect;
 
-.icon:hover:before {
-  font-size: 2.5rem;
+    &:before {
+      font-size: 2.5rem;
+    }
+  }
 }
 </style>

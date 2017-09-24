@@ -22,9 +22,11 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import '../../style/color.scss';
+
 .timer-counter {
-  color: var(--primary-text);
+  color: $primary-text;
   display: flex;
   align-items: center;
   height: 60%;

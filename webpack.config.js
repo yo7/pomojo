@@ -17,14 +17,7 @@ module.exports = {
     rules: [
       {
         test: /\.vue$/,
-        loader: 'vue-loader',
-        options: {
-          postcss: {
-            plugins: [
-              require('postcss-cssnext')()
-            ]
-          }
-        }
+        loader: 'vue-loader'
       },
       {
         test: /.js?$/,
@@ -32,12 +25,12 @@ module.exports = {
         loader: 'babel-loader'
       },
       {
-        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'url-loader?limit=10000&mimetype=application/font-woff'
+        test: /\.scss$/,
+        loaders: ['style-loader', 'css-loader', 'sass-loader']
       },
       {
-        test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'file-loader'
+        test: /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+        loader: 'file-loader?name=dist/fonts/[name].[ext]'
       }
     ]
   },
