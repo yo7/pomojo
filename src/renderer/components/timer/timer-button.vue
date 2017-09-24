@@ -1,10 +1,17 @@
 <template>
   <div class="timer-button">
-    <i
-      class="icon fa"
-      :class="{'fa-pause': running, 'fa-play': !running}"
-      @click="handleClick">
-    </i>
+    <div class="timer-icon">
+      <i
+        class="icon fa"
+        :class="{'fa-pause': running, 'fa-play': !running}"
+        @click="handleTimerClick">
+      </i>
+    </div>
+    <div class="reset-text">
+      <span v-show="pausing" @click="handleResetClick">
+        reset?
+      </span>
+    </div>
   </div>
 </template>
 
@@ -19,7 +26,8 @@ export default {
   },
   data() {
     return {
-      timerId: 0
+      timerId: 0,
+      pausing: false
     }
   },
   computed: {
@@ -32,19 +40,26 @@ export default {
       'toggleTimer',
       'updateCount'
     ]),
-    handleClick() {
+    handleTimerClick() {
       const self = this
       this.toggleTimer()
         .then(() => {
           if (!self.running) {
+            self.pausing = true
             return clearInterval(self.timerId)
           }
+          self.pausing = false
           self.timerId = setInterval(() => {
             self.updateCount(self.currentSeconds - 1)
           }, 1000)
-          console.log(self.timerId)
         })
         .catch(err => console.error(err))
+    },
+    handleResetClick() {
+      const workMintues = 25
+
+      this.updateCount(workMintues * 60)
+      this.pausing = false
     }
   }
 }
@@ -52,12 +67,15 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../style/color.scss';
-
 .timer-button {
-  display: flex;
   height: 20%;
-  align-items: center;
+}
+
+.timer-icon {
+  display: flex;
   justify-content: center;
+  align-items: center;
+  margin-bottom: 0.5rem;
 }
 
 .icon {
@@ -86,6 +104,17 @@ export default {
     &:before {
       font-size: 2.5rem;
     }
+  }
+}
+
+.reset-text {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  color: $highlight;
+
+  span {
+    cursor: pointer;
   }
 }
 </style>
