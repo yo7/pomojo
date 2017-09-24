@@ -38,6 +38,8 @@
     "semicolon": false,
     "rules": {
       "no-new": 0,
+      "import/no-unresolved": 0,
+      "import/no-unassigned-import": 0,
       "no-use-before-define": [
         "error",
         {
