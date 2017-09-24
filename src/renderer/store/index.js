@@ -13,30 +13,31 @@ const store = new Vuex.Store({
     seconds: workMinutes * 60
   },
   mutations: {
-    RUN(state) {
-      state.runnning = true
+    TOGGLE_TIMER(state) {
+      state.running = !state.running
     },
-    STOP(state) {
-      state.running = false
+    TOGGLE_WORKING(state) {
+      state.onBreak = !state.onBreak
     },
-    BREAK(state) {
-      state.onBreak = true
-    },
-    WORK(state) {
-      state.onBreak = false
-    },
-    COUNT(state) {
-      this.state.seconds--
-    },
-    INITIALIZE_WORK(state) {
-      this.state.seconds = workMinutes * 60
-    },
-    INITIALIZE_BREAK(state) {
-      this.state.seconds = breakMinutes * 60
+    UPDATE_COUNT(state, payload) {
+      state.seconds = payload
     }
   },
   actions: {
-    count: ({commit}) => commit('COUNT')
+    toggleTimer: ({commit}) => {
+      return new Promise(resolve => {
+        commit('TOGGLE_TIMER')
+        resolve()
+      })
+    },
+    updateCount: ({commit}, payload) => commit('UPDATE_COUNT', payload),
+    initializeCount: ({commit}, onBreak) => {
+      if (onBreak) {
+        commit('UPDATE_COUNT', breakMinutes)
+      } else {
+        commit('UPDATE_COUNT', workMinutes)
+      }
+    }
   }
 })
 
