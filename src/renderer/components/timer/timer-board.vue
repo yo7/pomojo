@@ -1,7 +1,8 @@
 <template>
   <div class="timer-board">
     <timer-counter :seconds="seconds"></timer-counter>
-    <timer-button></timer-button>
+    <timer-button :running="running"></timer-button>
+    <!-- <timer-today></timer-today> -->
   </div>
 </template>
 
@@ -11,10 +12,13 @@ import TimerButton from './timer-button'
 
 export default {
   name: 'timer-board',
-  components: { TimerCounter, TimerButton },
+  components: {TimerCounter, TimerButton},
   computed: {
     seconds() {
       return this.$store.state.seconds
+    },
+    running() {
+      return this.$store.state.running
     }
   }
 }

@@ -5,8 +5,7 @@
 </template>
 
 <script>
-import formatTime from './formatTime'
-import {mapActions} from 'vuex'
+import formatTime from './format-time'
 
 export default {
   props: {
