@@ -22,7 +22,10 @@ const initWindow = (withDock = false) => {
     frame: false,
     resizable: false,
     show: false,
-    transparent: true
+    transparent: true,
+    webPreferences: {
+      backgroundThrottling: false
+    }
   }
   window = new BrowserWindow(config)
   const document = `file://${__dirname}/../../index.html`
