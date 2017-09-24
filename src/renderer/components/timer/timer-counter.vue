@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import updateTray from './update-tray'
 import formatTime from './format-time'
 
 export default {
@@ -18,7 +19,13 @@ export default {
     formattedTime() {
       return formatTime(this.seconds)
     }
-  }
+  },
+  mounted() {
+    updateTray('')
+  },
+  updated() {
+    updateTray(this.formattedTime)
+  },
 }
 </script>
 

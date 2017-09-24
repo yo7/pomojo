@@ -4,7 +4,7 @@
       <i
         class="icon fa"
         :class="{'fa-pause': running, 'fa-play': !running}"
-        @click="handleTimerClick">
+        @click="handleButtonClick">
       </i>
     </div>
     <div class="reset-text">
@@ -21,8 +21,14 @@ import {mapActions} from 'vuex'
 export default {
   name: 'timer-button',
   props: {
-    running: Boolean,
-    default: false
+    running: {
+      type: Boolean,
+      default: false
+    },
+    onBreak: {
+      type: Boolean,
+      default: false
+    }
   },
   data() {
     return {
@@ -40,26 +46,35 @@ export default {
       'toggleTimer',
       'updateCount'
     ]),
-    handleTimerClick() {
-      const self = this
-      this.toggleTimer()
-        .then(() => {
-          if (!self.running) {
-            self.pausing = true
-            return clearInterval(self.timerId)
-          }
-          self.pausing = false
-          self.timerId = setInterval(() => {
-            self.updateCount(self.currentSeconds - 1)
-          }, 1000)
-        })
-        .catch(err => console.error(err))
+    handleButtonClick() {
+      if (this.currentSeconds === 0) {
+        this.timerHasExpired()
+      }
+      this.toggleTimer().then(() => this.updateTimer())
     },
     handleResetClick() {
-      const workMintues = 25
-
-      this.updateCount(workMintues * 60)
+      // TODO: use config value
+      this.initializeTimer(25).then(() => this.pausing = false)
+    },
+    timerHasExpired() {
+      // TODO: use config value
+      this.onBreak ? this.initializeTimer(5) : this.initializeTimer(25)
+    },
+    updateTimer() {
+      if (!this.running) {
+        this.pausing = true
+        return clearInterval(this.timerId)
+      }
       this.pausing = false
+      this.timerId = setInterval(() => {
+        this.updateCount(this.currentSeconds - 1)
+      }, 1000)
+    },
+    initializeTimer(minutes) {
+      return new Promise(resolve => {
+        this.updateCount(minutes * 60)
+        resolve()
+      })
     }
   }
 }

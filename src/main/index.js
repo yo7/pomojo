@@ -1,5 +1,5 @@
 import path from 'path'
-import {app, BrowserWindow, Tray} from 'electron'
+import {app, BrowserWindow, Tray, ipcMain} from 'electron'
 import isDev from 'electron-is-dev'
 import dev from './development'
 
@@ -10,6 +10,8 @@ app.on('ready', () => {
   initTray()
   initWindow()
 })
+
+ipcMain.on('update-timer', (_e, time) => tray.setTitle(time))
 
 const initWindow = (withDock = false) => {
   if (withDock === false) {
