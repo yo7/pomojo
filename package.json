@@ -1,5 +1,5 @@
 {
-  "name": "pomojuice",
+  "name": "pomojo",
   "version": "1.0.0",
   "description": "",
   "main": "dist/main/index.js",
@@ -15,14 +15,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yo7/pomojuice.git"
+    "url": "git+https://github.com/yo7/pomojo.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/yo7/pomojuice/issues"
+    "url": "https://github.com/yo7/pomojo/issues"
   },
-  "homepage": "https://github.com/yo7/pomojuice#readme",
+  "homepage": "https://github.com/yo7/pomojo#readme",
   "xo": {
     "extensions": [
       "vue"
