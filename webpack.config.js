@@ -19,7 +19,10 @@ module.exports = {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
-          loaders: {
+          postcss: {
+            plugins: [
+              require('postcss-cssnext')()
+            ]
           }
         }
       },

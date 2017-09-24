@@ -24,5 +24,13 @@ export default {
 </script>
 
 <style scoped>
-
+.timer-counter {
+  color: var(--primary-text);
+  display: flex;
+  align-items: center;
+  height: 60%;
+  justify-content: center;
+  font-size: 3.5rem;
+  font-weight: 500;
+}
 </style>
