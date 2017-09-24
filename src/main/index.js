@@ -39,7 +39,7 @@ const initWindow = (withDock = false) => {
 }
 
 const initTray = () => {
-  const image = 'juiceTemplate.png'
+  const image = 'iconTemplate.png'
   const imagePath = path.join(__dirname, `../../assets/${image}`)
   tray = new Tray(imagePath)
   tray.on('click', () => toggleWindow())
