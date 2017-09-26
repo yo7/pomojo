@@ -11,7 +11,7 @@
     "lint:fix": "xo --fix",
     "test": "npm run lint && npm run test:e2e && npm run test:unit",
     "test:e2e": "NODE_ENV=test ELECTRON_IS_DEV=false ava e2e/**/*.test.js",
-    "test:unit": "NODE_ENV=test ELECTRON_IS_DEV=false ava src/**/*.test.js"
+    "test:unit": "NODE_ENV=test ELECTRON_IS_DEV=false jest"
   },
   "repository": {
     "type": "git",
@@ -32,7 +32,8 @@
     ],
     "envs": [
       "node",
-      "browser"
+      "browser",
+      "jest"
     ],
     "space": true,
     "semicolon": false,
@@ -49,6 +50,10 @@
         }
       ]
     }
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "./scripts/jest-setup.js",
+    "testRegex": "src/.*.test.js$"
   },
   "ava": {
     "babel": "inherit",
@@ -70,7 +75,7 @@
     "file-loader": "^0.11.2",
     "font-awesome": "^4.7.0",
     "font-awesome-webpack": "0.0.5-beta.2",
-    "jest": "^20.0.4",
+    "jest": "^20.1.0-alpha.3",
     "node-sass": "^4.5.3",
     "sass-loader": "^6.0.6",
     "spectron": "^3.7.2",
@@ -82,6 +87,7 @@
     "xo": "^0.18.2"
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "electron-is-dev": "^0.3.0",
     "vue": "^2.4.4",
     "vuex": "^2.4.0"

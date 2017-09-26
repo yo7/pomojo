@@ -25,7 +25,7 @@ export default {
   },
   updated() {
     updateTray(this.formattedTime)
-  },
+  }
 }
 </script>
 

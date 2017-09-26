@@ -1,21 +1,13 @@
-const formatTime = time => {
-  const {minutes, seconds} = divide(time)
-  const mm = format(minutes)
-  const ss = format(seconds)
-  return `${mm}:${ss}`
-}
+const formatTime = seconds => divide(seconds).map(v => pad(v)).join(':')
 
-const format = v => {
-  const s = '00' + v
-  return s.substr(s.length - 2)
-}
+const pad = v => v.toString().padStart(2, '0')
 
-const divide = time => {
-  const minutesDivisor = time % (60 * 60)
-  const minutes = Math.floor(minutesDivisor / 60)
+const divide = seconds => {
+  const minutesDivisor = seconds % (60 * 60)
+  const mm = Math.floor(minutesDivisor / 60)
   const secondsDivisor = minutesDivisor % 60
-  const seconds = Math.ceil(secondsDivisor)
-  return {minutes, seconds}
+  const ss = Math.ceil(secondsDivisor)
+  return [mm, ss]
 }
 
 export default formatTime
