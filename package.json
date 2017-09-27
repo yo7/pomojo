@@ -53,7 +53,15 @@
   },
   "jest": {
     "setupTestFrameworkScriptFile": "./scripts/jest-setup.js",
-    "testRegex": "src/.*.test.js$"
+    "testRegex": "src/.*.spec.js$",
+    "moduleFileExtensions": [
+      "js",
+      "vue"
+    ],
+    "transform": {
+      "^.+\\.js$": "./node_modules/babel-jest",
+      ".*\\.(vue)$": "./node_modules/jest-vue"
+    }
   },
   "ava": {
     "babel": "inherit",
@@ -65,6 +73,7 @@
   "devDependencies": {
     "ava": "^0.22.0",
     "babel-core": "^6.25.0",
+    "babel-jest": "^21.2.0",
     "babel-loader": "^7.1.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
@@ -72,10 +81,12 @@
     "css-loader": "^0.28.7",
     "devtron": "^1.4.0",
     "electron": "^1.7.5",
+    "eslint-plugin-html": "^3.2.2",
     "file-loader": "^0.11.2",
     "font-awesome": "^4.7.0",
     "font-awesome-webpack": "0.0.5-beta.2",
-    "jest": "^20.1.0-alpha.3",
+    "jest": "^21.2.0",
+    "jest-vue": "^0.5.6",
     "node-sass": "^4.5.3",
     "sass-loader": "^6.0.6",
     "spectron": "^3.7.2",

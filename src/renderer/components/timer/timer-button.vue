@@ -54,11 +54,13 @@ export default {
     },
     handleResetClick() {
       // TODO: use config value
-      this.initializeTimer(25).then(() => this.pausing = false)
+      this.initializeTimer(25).then(() => {
+        this.pausing = false
+      })
     },
     timerHasExpired() {
       // TODO: use config value
-      this.onBreak ? this.initializeTimer(5) : this.initializeTimer(25)
+      return this.onBreak ? this.initializeTimer(5) : this.initializeTimer(25)
     },
     updateTimer() {
       if (!this.running) {
