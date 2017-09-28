@@ -35,7 +35,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.js', '.vue', '.woff', 'woff2', '.ttf', '.eot', '.svg']
+    extensions: ['.js', '.vue', '.json', '.woff', 'woff2', '.ttf', '.eot', '.svg']
   },
   devtool: 'inline-source-map'
 }

@@ -81,6 +81,7 @@
     "css-loader": "^0.28.7",
     "devtron": "^1.4.0",
     "electron": "^1.7.5",
+    "electron-devtools-installer": "^2.2.0",
     "eslint-plugin-html": "^3.2.2",
     "file-loader": "^0.11.2",
     "font-awesome": "^4.7.0",

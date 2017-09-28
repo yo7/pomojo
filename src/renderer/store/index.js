@@ -4,39 +4,42 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const workMinutes = 25
-const breakMinutes = 5
 
 const store = new Vuex.Store({
   state: {
     running: false,
-    onBreak: false,
+    onBreak: true,
     seconds: workMinutes * 60
   },
   mutations: {
-    TOGGLE_TIMER(state) {
-      state.running = !state.running
+    UPDATE_RUNNING(state, payload) {
+      state.running = payload
     },
-    TOGGLE_WORKING(state) {
-      state.onBreak = !state.onBreak
+    UPDDATE_ON_BREAK(state, payload) {
+      state.onBreak = payload
     },
     UPDATE_COUNT(state, payload) {
       state.seconds = payload
     }
   },
   actions: {
-    toggleTimer: ({commit}) => {
+    updateRunning: ({commit}, payload) => {
       return new Promise(resolve => {
-        commit('TOGGLE_TIMER')
+        commit('UPDATE_RUNNING', payload)
         resolve()
       })
     },
-    updateCount: ({commit}, payload) => commit('UPDATE_COUNT', payload),
-    initializeCount: ({commit}, onBreak) => {
-      if (onBreak) {
-        commit('UPDATE_COUNT', breakMinutes)
-      } else {
-        commit('UPDATE_COUNT', workMinutes)
-      }
+    updateOnBreak: ({commit}, payload) => {
+      return new Promise(resolve => {
+        commit('UPDDATE_ON_BREAK', payload)
+        resolve()
+      })
+    },
+    updateCount: ({commit}, payload) => {
+      return new Promise(resolve => {
+        commit('UPDATE_COUNT', payload)
+        resolve()
+      })
     }
   }
 })

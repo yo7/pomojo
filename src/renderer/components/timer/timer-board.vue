@@ -1,7 +1,7 @@
 <template>
   <div class="timer-board">
     <timer-counter :seconds="seconds"></timer-counter>
-    <timer-button :running="running"></timer-button>
+    <timer-button :seconds="seconds" :running="running" :onBreak="onBreak"></timer-button>
     <!-- <timer-today></timer-today> -->
   </div>
 </template>
@@ -19,6 +19,9 @@ export default {
     },
     running() {
       return this.$store.state.running
+    },
+    onBreak() {
+      return this.$store.state.onBreak
     }
   }
 }

@@ -4,11 +4,11 @@
       <i
         class="icon fa"
         :class="{'fa-pause': running, 'fa-play': !running}"
-        @click="handleButtonClick">
+        @click="onButtonClick">
       </i>
     </div>
     <div class="reset-text">
-      <span v-show="pausing" @click="handleResetClick">
+      <span v-show="pausing && seconds != 1500" @click="onResetClick">
         reset?
       </span>
     </div>
@@ -23,11 +23,17 @@ export default {
   props: {
     running: {
       type: Boolean,
-      default: false
+      default: false,
+      required: true
     },
     onBreak: {
       type: Boolean,
-      default: false
+      default: false,
+      required: true
+    },
+    seconds: {
+      type: Number,
+      required: true
     }
   },
   data() {
@@ -36,47 +42,49 @@ export default {
       pausing: false
     }
   },
-  computed: {
-    currentSeconds() {
-      return this.$store.state.seconds
-    }
-  },
   methods: {
     ...mapActions([
-      'toggleTimer',
+      'updateRunning',
+      'updateOnBreak',
       'updateCount'
     ]),
-    handleButtonClick() {
-      if (this.currentSeconds === 0) {
-        this.timerHasExpired()
-      }
-      this.toggleTimer().then(() => this.updateTimer())
+    async onButtonClick() {
+      await this.updateRunning(!this.running)
+      this.update()
     },
-    handleResetClick() {
+    onResetClick() {
       // TODO: use config value
-      this.initializeTimer(25).then(() => {
-        this.pausing = false
-      })
+      this.reset()
     },
-    timerHasExpired() {
-      // TODO: use config value
-      return this.onBreak ? this.initializeTimer(5) : this.initializeTimer(25)
-    },
-    updateTimer() {
+    update() {
       if (!this.running) {
         this.pausing = true
         return clearInterval(this.timerId)
       }
       this.pausing = false
       this.timerId = setInterval(() => {
-        this.updateCount(this.currentSeconds - 1)
+        this.onSecondElapsed()
       }, 1000)
     },
-    initializeTimer(minutes) {
-      return new Promise(resolve => {
-        this.updateCount(minutes * 60)
-        resolve()
-      })
+    onSecondElapsed() {
+      if (this.seconds === 0) {
+        return this.onExpired()
+      }
+      this.updateCount(this.seconds - 1)
+    },
+    onExpired() {
+      if (this.onBreak) {
+        this.reset()
+      } else {
+        this.updateOnBreak(true)
+        this.updateCount(300)
+      }
+    },
+    async reset() {
+      await this.updateCount(1500)
+      await this.updateRunning(false)
+      await this.updateOnBreak(false)
+      return clearInterval(this.timerId)
     }
   }
 }
