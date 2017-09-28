@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import updateTray from './update-tray'
+import tray from './update-tray'
 import formatTime from './format-time'
 
 export default {
@@ -21,10 +21,10 @@ export default {
     }
   },
   mounted() {
-    updateTray('')
+    tray.initialize()
   },
   updated() {
-    updateTray(this.formattedTime)
+    tray.update(this.formattedTime)
   }
 }
 </script>

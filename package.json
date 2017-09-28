@@ -94,6 +94,7 @@
     "url-loader": "^0.5.9",
     "vue-loader": "^13.0.5",
     "vue-template-compiler": "^2.4.4",
+    "vue-test-utils": "https://github.com/vuejs/vue-test-utils/",
     "webpack": "^3.5.5",
     "xo": "^0.18.2"
   },
