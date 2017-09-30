@@ -2,10 +2,10 @@
   <div class="timer-board">
     <timer-counter></timer-counter>
     <timer-button
-      :seconds="seconds"
       :running="running"
+      :resting="resting"
       :pausing="pausing"
-      :onBreak="onBreak">
+      :seconds="seconds">
     </timer-button>
     <!-- <timer-today></timer-today> -->
   </div>
@@ -21,10 +21,10 @@ export default {
   components: {TimerCounter, TimerButton},
   computed: {
     ...mapState([
-      'seconds',
       'running',
+      'resting',
       'pausing',
-      'onBreak'
+      'seconds'
     ])
   }
 }

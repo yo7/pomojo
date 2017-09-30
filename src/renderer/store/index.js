@@ -9,8 +9,8 @@ const workMinutes = 25
 const store = new Vuex.Store({
   state: {
     running: false,
+    resting: false,
     pausing: true,
-    onBreak: false,
     seconds: workMinutes * 60
   },
   mutations: {
@@ -20,37 +20,22 @@ const store = new Vuex.Store({
     UPDATE_PAUSING(state, value) {
       state.pausing = value
     },
-    UPDATE_ONBREAK(state, value) {
-      state.onBreak = value
+    UPDATE_RESTING(state, value) {
+      state.resting = value
     },
     UPDATE_COUNT(state, value) {
       state.seconds = value
     }
   },
   actions: {
-    updateRunning: ({commit}, value) => {
-      return new Promise(resolve => {
-        commit('UPDATE_RUNNING', value)
-        resolve()
-      })
-    },
+    updateRunning: ({commit}, value) => commit('UPDATE_RUNNING', value),
+    updateResting: ({commit}, value) => commit('UPDDATE_RESTING', value),
     updatePausing: ({commit}, value) => commit('UPDATE_PAUSING', value),
-    updateOnBreak: ({commit}, value) => {
-      return new Promise(resolve => {
-        commit('UPDDATE_ONBREAK', value)
-        resolve()
-      })
-    },
-    updateCount: ({commit}, value) => {
-      return new Promise(resolve => {
-        commit('UPDATE_COUNT', value)
-        resolve()
-      })
-    },
-    reset: async ({commit}) => {
-      await commit('UPDATE_COUNT', workMinutes * 60)
-      await commit('UPDATE_RUNNING', false)
-      commit('UPDATE_ONBREAK', false)
+    updateCount: ({commit}, value) => commit('UPDATE_COUNT', value),
+    reset: ({commit}) => {
+      commit('UPDATE_COUNT', workMinutes * 60)
+      commit('UPDATE_RUNNING', false)
+      commit('UPDATE_RESTING', false)
     }
   },
   getters: {

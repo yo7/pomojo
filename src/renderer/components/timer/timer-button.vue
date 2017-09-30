@@ -29,7 +29,7 @@ export default {
       default: false,
       required: true
     },
-    onBreak: {
+    resting: {
       type: Boolean,
       default: false,
       required: true
@@ -39,16 +39,14 @@ export default {
       required: true
     }
   },
-  data() {
-    return {
-      timerId: 0
-    }
-  },
+  data: () => ({
+    timerId: 0
+  }),
   methods: {
     ...mapActions([
       'updateRunning',
+      'updateResting',
       'updatePausing',
-      'updateOnBreak',
       'updateCount'
     ]),
     async onButtonClick() {
@@ -73,10 +71,11 @@ export default {
       this.updateCount(this.seconds - 1)
     },
     onExpired() {
-      if (this.onBreak) {
+      if (this.pausing) {
+        clearInterval(this.timerId)
         this.reset()
       } else {
-        this.updateOnBreak(true)
+        this.updateResting(true)
         this.updateCount(300)
       }
     },

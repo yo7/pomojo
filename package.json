@@ -6,12 +6,13 @@
   "scripts": {
     "start": "electron .",
     "build": "webpack",
-    "watch": "webpack --watch",
+    "dev": "webpack --watch",
     "lint": "xo --silent",
     "fix": "xo --fix",
     "test": "npm run lint && npm run e2e && npm run unit",
     "e2e": "NODE_ENV=test ELECTRON_IS_DEV=false ava e2e/**/*.test.js",
-    "unit": "NODE_ENV=test ELECTRON_IS_DEV=false jest"
+    "unit": "NODE_ENV=test ELECTRON_IS_DEV=false jest",
+    "watch": "NODE_ENV=test ELECTRON_IS_DEV=false jest --watch"
   },
   "repository": {
     "type": "git",

@@ -6,7 +6,7 @@
 
 <script>
 import {mapGetters} from 'vuex'
-import * as tray from './tray'
+import * as tray from '../../helpers/tray'
 
 export default {
   computed: {
