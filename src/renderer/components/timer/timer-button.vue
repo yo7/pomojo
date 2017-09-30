@@ -4,7 +4,7 @@
       <i
         class="icon fa"
         :class="{'fa-pause': running, 'fa-play': !running}"
-         @click="onButtonClick">
+         @click="toggle">
       </i>
     </div>
     <timer-reset></timer-reset>
@@ -23,68 +23,12 @@ export default {
       type: Boolean,
       default: false,
       required: true
-    },
-    pausing: {
-      type: Boolean,
-      default: false,
-      required: true
-    },
-    resting: {
-      type: Boolean,
-      default: false,
-      required: true
-    },
-    seconds: {
-      type: Number,
-      required: true
     }
   },
-  data: () => ({
-    timerId: 0
-  }),
   methods: {
-    ...mapActions([
-      'updateRunning',
-      'updateResting',
-      'updatePausing',
-      'updateCount'
-    ]),
-    async onButtonClick() {
-      await this.updateRunning(!this.running)
-      this.updatePausing(!this.pausing)
-      this.update()
-    },
-    update() {
-      if (!this.running) {
-        this.updatePausing(true)
-        return clearInterval(this.timerId)
-      }
-      this.updatePausing(false)
-      this.timerId = setInterval(() => {
-        this.onSecondElapsed()
-      }, 1000)
-    },
-    onSecondElapsed() {
-      if (this.seconds === 0) {
-        return this.onExpired()
-      }
-      this.updateCount(this.seconds - 1)
-    },
-    onExpired() {
-      if (this.pausing) {
-        clearInterval(this.timerId)
-        this.reset()
-      } else {
-        this.updateResting(true)
-        this.updateCount(300)
-      }
-    },
-    async reset() {
-      await this.updateCount(1500)
-      await this.updateRunning(false)
-      await this.updateOnBreak(false)
-      return clearInterval(this.timerId)
-    }
+    ...mapActions({
+      toggle: 'timer/toggle'
+    })
   }
 }
 </script>

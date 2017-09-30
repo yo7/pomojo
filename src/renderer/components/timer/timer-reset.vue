@@ -12,14 +12,14 @@ import {mapGetters, mapActions} from 'vuex'
 export default {
   name: 'timer-reset',
   computed: {
-    ...mapGetters([
-      'resettable'
-    ])
+    ...mapGetters({
+      resettable: 'timer/resettable'
+    })
   },
   methods: {
-    ...mapActions([
-      'reset'
-    ])
+    ...mapActions({
+      reset: 'timer/reset'
+    })
   }
 }
 </script>

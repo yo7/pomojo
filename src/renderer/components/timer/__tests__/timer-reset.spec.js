@@ -9,17 +9,8 @@ Vue.use(Vuex)
 describe('TimerReset', () => {
   let store
 
-  it('shows reset text unless resettable', () => {
-    const getters = {resettable: () => false}
-    store = new Vuex.Store({getters})
-
-    const wrapper = shallow(TimerReset, {store})
-    const text = wrapper.find('.timer-reset > span')
-    expect(text.hasStyle('display', 'none')).toBeTruthy()
-  })
-
-  it('shows reset text unless resettable', () => {
-    const getters = {resettable: () => true}
+  it('shows reset text if resettable', () => {
+    const getters = {'timer/resettable': () => true}
     store = new Vuex.Store({getters})
 
     const wrapper = shallow(TimerReset, {store})
@@ -27,21 +18,30 @@ describe('TimerReset', () => {
     expect(text.hasStyle('display', 'none')).toBeFalsy()
   })
 
+  it('does not show reset text unless resettable', () => {
+    const getters = {'timer/resettable': () => false}
+    store = new Vuex.Store({getters})
+
+    const wrapper = shallow(TimerReset, {store})
+    const text = wrapper.find('.timer-reset > span')
+    expect(text.hasStyle('display', 'none')).toBeTruthy()
+  })
+
   it('reset timer on click', () => {
-    const getters = {resettable: () => false}
+    const getters = {'timer/resettable': () => true}
     const actions = {
-      reset: jest.fn()
+      'timer/reset': jest.fn()
     }
     store = new Vuex.Store({getters, actions})
     const wrapper = shallow(TimerReset, {store})
     const text = wrapper.find('.timer-reset > span')
     text.trigger('click')
-    expect(actions.reset).toHaveBeenCalled()
+    expect(actions['timer/reset']).toHaveBeenCalled()
   })
 
   it('renders correctly', () => {
     const renderer = createRenderer()
-    const getters = {resettable: () => true}
+    const getters = {'timer/resettable': () => true}
     store = new Vuex.Store({getters})
 
     const wrapper = shallow(TimerReset, {store})

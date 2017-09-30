@@ -15,13 +15,17 @@ describe('TimerCounter', () => {
   let mutations
 
   beforeEach(() => {
-    state = {seconds: 1500}
-    mutations = {
-      UPDATE_COUNT: (state, value) => {
-        state.seconds = value
+    state = {
+      timer: {
+        seconds: 1500
       }
     }
-    getters = {formattedTime: state => formatTime(state.seconds)}
+    mutations = {
+      'timer/UPDATE_COUNT': (state, value) => {
+        state.timer.seconds = value
+      }
+    }
+    getters = {'timer/formattedTime': state => formatTime(state.timer.seconds)}
     store = new Vuex.Store({state, getters, mutations})
   })
 
@@ -45,7 +49,7 @@ describe('TimerCounter', () => {
   it('updates tray on updated', () => {
     jest.spyOn(tray, 'update')
     const wrapper = shallow(TimerCounter, {store})
-    store.commit('UPDATE_COUNT', 1499)
+    store.commit('timer/UPDATE_COUNT', 1499)
     wrapper.vm.$nextTick(() => {
       expect(tray.update).toHaveBeenCalled()
     })
@@ -54,19 +58,18 @@ describe('TimerCounter', () => {
   it('does not initialize tray on updated', () => {
     jest.spyOn(tray, 'initialize')
     const wrapper = shallow(TimerCounter, {store})
-    store.commit('UPDATE_COUNT', 1499)
+    store.commit('timer/UPDATE_COUNT', 1499)
     wrapper.vm.$nextTick(() => {
       expect(tray.initialize).toHaveBeenCalled()
     })
   })
 
   it('updates tray with formatted time', () => {
-    const seconds = 1499
     jest.spyOn(tray, 'update')
     const wrapper = shallow(TimerCounter, {store})
-    store.commit('UPDATE_COUNT', seconds)
+    store.commit('timer/UPDATE_COUNT', 1499)
     wrapper.vm.$nextTick(() => {
-      expect(tray.update).toHaveBeenCalledWith(formatTime(1499))
+      expect(tray.update).toHaveBeenCalledWith('24:59')
     })
   })
 

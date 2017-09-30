@@ -10,7 +10,9 @@ import * as tray from '../../helpers/tray'
 
 export default {
   computed: {
-    ...mapGetters(['formattedTime'])
+    ...mapGetters({
+      formattedTime: 'timer/formattedTime'
+    })
   },
   mounted() {
     tray.initialize()
