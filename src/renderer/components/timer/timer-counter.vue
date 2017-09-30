@@ -5,20 +5,12 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 import * as tray from './tray'
-import formatTime from './format-time'
 
 export default {
-  props: {
-    seconds: {
-      type: Number,
-      required: true
-    }
-  },
   computed: {
-    formattedTime() {
-      return formatTime(this.seconds)
-    }
+    ...mapGetters(['formattedTime'])
   },
   mounted() {
     tray.initialize()

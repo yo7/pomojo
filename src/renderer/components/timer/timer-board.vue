@@ -1,7 +1,12 @@
 <template>
   <div class="timer-board">
-    <timer-counter :seconds="seconds"></timer-counter>
-    <timer-button :seconds="seconds" :running="running" :onBreak="onBreak"></timer-button>
+    <timer-counter></timer-counter>
+    <timer-button
+      :seconds="seconds"
+      :running="running"
+      :pausing="pausing"
+      :onBreak="onBreak">
+    </timer-button>
     <!-- <timer-today></timer-today> -->
   </div>
 </template>
@@ -15,7 +20,12 @@ export default {
   name: 'timer-board',
   components: {TimerCounter, TimerButton},
   computed: {
-    ...mapState(['seconds', 'running', 'onBreak'])
+    ...mapState([
+      'seconds',
+      'running',
+      'pausing',
+      'onBreak'
+    ])
   }
 }
 </script>

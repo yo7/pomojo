@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TimerReset renders correctly 1`] = `
+<div class="timer-reset"><span>
+    reset?
+  </span></div>
+`;

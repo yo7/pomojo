@@ -1,26 +1,30 @@
 <template>
   <div class="timer-button">
-    <div class="timer-icon" @click="onButtonClick">
+    <div class="timer-icon">
       <i
         class="icon fa"
-        :class="{'fa-pause': running, 'fa-play': !running}">
+        :class="{'fa-pause': running, 'fa-play': !running}"
+         @click="onButtonClick">
       </i>
     </div>
-    <div class="reset-text">
-      <span v-show="pausing && seconds != 1500" @click="onResetClick">
-        reset?
-      </span>
-    </div>
+    <timer-reset></timer-reset>
   </div>
 </template>
 
 <script>
 import {mapActions} from 'vuex'
+import TimerReset from './timer-reset'
 
 export default {
   name: 'timer-button',
+  components: {TimerReset},
   props: {
     running: {
+      type: Boolean,
+      default: false,
+      required: true
+    },
+    pausing: {
       type: Boolean,
       default: false,
       required: true
@@ -37,30 +41,27 @@ export default {
   },
   data() {
     return {
-      timerId: 0,
-      pausing: false
+      timerId: 0
     }
   },
   methods: {
     ...mapActions([
       'updateRunning',
+      'updatePausing',
       'updateOnBreak',
       'updateCount'
     ]),
     async onButtonClick() {
       await this.updateRunning(!this.running)
+      this.updatePausing(!this.pausing)
       this.update()
-    },
-    onResetClick() {
-      // TODO: use config value
-      this.reset()
     },
     update() {
       if (!this.running) {
-        this.pausing = true
+        this.updatePausing(true)
         return clearInterval(this.timerId)
       }
-      this.pausing = false
+      this.updatePausing(false)
       this.timerId = setInterval(() => {
         this.onSecondElapsed()
       }, 1000)
@@ -128,17 +129,6 @@ export default {
     &:before {
       font-size: 2.5rem;
     }
-  }
-}
-
-.reset-text {
-  text-align: center;
-  font-size: 1rem;
-  font-weight: 600;
-  color: $highlight;
-
-  span {
-    cursor: pointer;
   }
 }
 </style>
