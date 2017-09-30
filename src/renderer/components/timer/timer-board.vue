@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
 import TimerCounter from './timer-counter'
 import TimerButton from './timer-button'
 
@@ -14,15 +15,7 @@ export default {
   name: 'timer-board',
   components: {TimerCounter, TimerButton},
   computed: {
-    seconds() {
-      return this.$store.state.seconds
-    },
-    running() {
-      return this.$store.state.running
-    },
-    onBreak() {
-      return this.$store.state.onBreak
-    }
+    ...mapState(['seconds', 'running', 'onBreak'])
   }
 }
 </script>

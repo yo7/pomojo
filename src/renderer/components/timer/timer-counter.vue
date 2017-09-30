@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import tray from './update-tray'
+import * as tray from './tray'
 import formatTime from './format-time'
 
 export default {

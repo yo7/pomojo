@@ -1,4 +1,4 @@
-import formatTime from './format-time'
+import formatTime from '../format-time'
 
 describe('formatTime', () => {
   it('format seconds to human reabable text', () => {

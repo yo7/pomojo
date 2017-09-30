@@ -1,10 +1,9 @@
 <template>
   <div class="timer-button">
-    <div class="timer-icon">
+    <div class="timer-icon" @click="onButtonClick">
       <i
         class="icon fa"
-        :class="{'fa-pause': running, 'fa-play': !running}"
-        @click="onButtonClick">
+        :class="{'fa-pause': running, 'fa-play': !running}">
       </i>
     </div>
     <div class="reset-text">
