@@ -1,19 +1,27 @@
 <template>
   <div class="container">
-    <timer-board></timer-board>
+    <base-navigation></base-navigation>
+    <div class="board">
+      <timer-board></timer-board>
+    </div>
   </div>
 </template>
 
 <script>
+import BaseNavigation from './components/base-navigation'
 import TimerBoard from './components/timer/timer-board'
 
 export default {
   name: 'app',
-  components: {TimerBoard}
+  components: {
+    BaseNavigation,
+    TimerBoard
+  }
 }
 </script>
 
 <style lang="scss">
+@import './style/base.scss';
 @import './style/typography.scss';
 @import './style/color.scss';
 
@@ -39,5 +47,9 @@ export default {
     position: absolute;
     width: 0;
   }
+}
+
+.board {
+  height: 90%;
 }
 </style>

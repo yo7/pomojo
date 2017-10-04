@@ -43,7 +43,6 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 0.5rem;
 }
 
 .icon {
@@ -56,6 +55,7 @@ export default {
   align-items: center;
   justify-content: center;
   transition: background-color 0.5s;
+  padding: 2rem;
 
   &:before {
     transition: font-size 0.5s;

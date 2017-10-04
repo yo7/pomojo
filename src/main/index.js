@@ -12,6 +12,7 @@ app.on('ready', () => {
 })
 
 ipcMain.on('update-timer', (_e, time) => tray.setTitle(time))
+ipcMain.on('close', () => app.quit())
 
 const initWindow = (withDock = false) => {
   if (withDock === false) {

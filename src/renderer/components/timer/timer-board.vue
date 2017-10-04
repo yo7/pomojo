@@ -27,6 +27,6 @@ export default {
 
 <style scoped>
 .timer-board {
-  height: 100%;
+  height: 80%;
 }
 </style>
