@@ -1,12 +1,13 @@
 {
   "name": "pomojo",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.0.1",
+  "description": "Pomodoro app to make work joyful",
   "main": "dist/main/index.js",
   "scripts": {
     "start": "electron .",
     "build": "webpack",
     "dev": "webpack --watch",
+    "package": "electron-packager . pomojo --platform=darwin",
     "lint": "xo --silent",
     "fix": "xo --fix",
     "test": "npm run lint && npm run e2e && npm run unit",
@@ -108,6 +109,7 @@
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "electron-is-dev": "^0.3.0",
+    "electron-packager": "^9.1.0",
     "vue": "^2.4.4",
     "vuex": "^2.4.0"
   }

@@ -41,11 +41,11 @@ const timer = {
     onExpired: ({commit, state, dispatch}) => {
       if (state.resting) {
         dispatch('reset')
-        return notify({title: 'Move on!', body: 'Finished 5 minutes break!'})
+        return notify({title: 'Break has finished!', body: 'Move on to next pomodoro!'})
       }
       commit('UPDATE_RESTING', true)
       commit('UPDATE_COUNT', restMinutes * 60)
-      return notify({title: 'Well done', body: 'Finished 25 minutes work!'})
+      return notify({title: 'Pomodoro has finished!', body: 'Well done! Let\'s take a break!'})
     },
     reset: ({commit, dispatch}) => {
       commit('UPDATE_COUNT', workMinutes * 60)
