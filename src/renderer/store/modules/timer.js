@@ -1,4 +1,5 @@
 import formatTime from '../../helpers/format-time'
+import notify from '../../helpers/notify'
 
 const workMinutes = 25
 const restMinutes = 5
@@ -39,10 +40,12 @@ const timer = {
     },
     onExpired: ({commit, state, dispatch}) => {
       if (state.resting) {
-        return dispatch('reset')
+        dispatch('reset')
+        return notify({title: 'Move on!', body: 'Finished 5 minutes break!'})
       }
       commit('UPDATE_RESTING', true)
       commit('UPDATE_COUNT', restMinutes * 60)
+      return notify({title: 'Well done', body: 'Finished 25 minutes work!'})
     },
     reset: ({commit, dispatch}) => {
       commit('UPDATE_COUNT', workMinutes * 60)
