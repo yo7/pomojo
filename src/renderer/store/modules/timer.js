@@ -7,7 +7,7 @@ const timer = {
   namespaced: true,
   state: {
     running: false,
-    resting: true,
+    resting: false,
     pausing: true,
     seconds: workMinutes * 60,
     timerId: 0
