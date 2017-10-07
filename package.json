@@ -7,7 +7,7 @@
     "start": "electron .",
     "build": "webpack",
     "dev": "webpack --watch",
-    "package": "electron-packager . pomojo --platform=darwin",
+    "package": "electron-packager . Pomojo --overwrite --platform=darwin --arch=x64 --icon='assets/icon.icns' --ignore='src' --ignore='coverage' --app-bundle-id='pomojo' --out='build'",
     "lint": "xo --silent",
     "fix": "xo --fix",
     "test": "npm run lint && npm run e2e && npm run unit",
