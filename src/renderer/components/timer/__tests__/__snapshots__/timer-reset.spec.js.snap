@@ -1,7 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TimerReset renders correctly 1`] = `
+exports[`TimerReset if resettable renders correctly 1`] = `
 <div class="timer-reset"><span>
+    reset?
+  </span></div>
+`;
+
+exports[`TimerReset unless resettable renders correctly 1`] = `
+<div class="timer-reset"><span style="display:none;">
     reset?
   </span></div>
 `;
