@@ -36,11 +36,10 @@ const initWindow = (withDock = false) => {
 
   showWindow()
 
-  if (!isDev) {
-    window.on('blur', () => window.hide())
-  }
   if (isDev) {
     dev.openTool(window)
+  } else {
+    window.on('blur', () => window.hide())
   }
 }
 

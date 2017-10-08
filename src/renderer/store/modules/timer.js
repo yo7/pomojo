@@ -1,5 +1,6 @@
 import formatTime from '../../helpers/format-time'
 import notify from '../../helpers/notify'
+import pomodoro from '../../datastore/pomodoro'
 
 const workMinutes = 25
 const restMinutes = 5
@@ -38,11 +39,12 @@ const timer = {
         return getters.expired ? dispatch('onExpired') : commit('UPDATE_COUNT', state.seconds - 1)
       }, 1000)
     },
-    onExpired: ({commit, state, dispatch}) => {
+    onExpired: async ({commit, state, dispatch}) => {
       if (state.resting) {
         dispatch('reset')
         return notify({title: 'Break has finished!', body: 'Move on to next pomodoro!'})
       }
+      await pomodoro.add()
       commit('UPDATE_RESTING', true)
       commit('UPDATE_COUNT', restMinutes * 60)
       return notify({title: 'Pomodoro has finished!', body: 'Well done! Let\'s take a break!'})

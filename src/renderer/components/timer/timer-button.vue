@@ -36,7 +36,7 @@ export default {
 <style lang="scss" scoped>
 @import '../../style/color.scss';
 .timer-button {
-  height: 20%;
+  height: 30%;
 }
 
 .timer-icon {

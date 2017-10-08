@@ -6,7 +6,7 @@ describe('TimerButton', () => {
   it('renders correctly', () => {
     const renderer = createRenderer()
     const wrapper = shallow(TimerButton, {
-      propsData: {running: false, resting: false, pausing: true, seconds: 1500}
+      propsData: {running: false}
     })
     renderer.renderToString(wrapper.vm, (err, str) => {
       if (err) {
