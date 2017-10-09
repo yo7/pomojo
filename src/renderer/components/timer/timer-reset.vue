@@ -1,7 +1,7 @@
 <template>
   <div class="timer-reset">
     <span v-show="resettable" @click="reset">
-      reset?
+      reset
     </span>
   </div>
 </template>
@@ -29,9 +29,10 @@ export default {
 
 .timer-reset {
   text-align: center;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 600;
   color: $highlight;
+  margin-top: 0.5rem;
 
   span {
     cursor: pointer;

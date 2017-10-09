@@ -2,7 +2,7 @@
   <div class="timer-board">
     <timer-counter></timer-counter>
     <timer-button :running="running"></timer-button>
-    <!-- <timer-today></timer-today> -->
+     <timer-today :resting="resting" :today="today" :goal="goal"></timer-today>
   </div>
 </template>
 
@@ -10,16 +10,21 @@
 import {mapState} from 'vuex'
 import TimerCounter from './timer-counter'
 import TimerButton from './timer-button'
+import TimerToday from './timer-today'
 
 export default {
   name: 'timer-board',
   components: {
     TimerCounter,
-    TimerButton
+    TimerButton,
+    TimerToday
   },
   computed: {
     ...mapState({
-      running: state => state.timer.running
+      running: state => state.timer.running,
+      resting: state => state.timer.resting,
+      today: state => state.timer.today,
+      goal: state => state.timer.goal
     })
   }
 }
@@ -27,6 +32,6 @@ export default {
 
 <style scoped>
 .timer-board {
-  height: 80%;
+  height: 100%;
 }
 </style>

@@ -2,12 +2,12 @@
 
 exports[`TimerReset if resettable renders correctly 1`] = `
 <div class="timer-reset"><span>
-    reset?
+    reset
   </span></div>
 `;
 
 exports[`TimerReset unless resettable renders correctly 1`] = `
 <div class="timer-reset"><span style="display:none;">
-    reset?
+    reset
   </span></div>
 `;
