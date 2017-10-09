@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import pomodoro from '../../datastore/pomodoro'
+import {mapGetters, mapActions} from 'vuex'
 
 export default {
   name: 'timer-today',
@@ -17,25 +17,29 @@ export default {
       type: Boolean,
       default: false,
       required: true
+    },
+    today: {
+      type: Number,
+      default: 0,
+      requried: true
+    },
+    goal: {
+      type: Number,
+      required: true
     }
   },
-  data: () => ({
-    goal: 8
-  }),
-  asyncComputed: {
-    today: {
-      get() {
-        return pomodoro.todayCount()
-      },
-      watch() {
-        return this.resting
-      }
-    },
-    percentage: {
-      get() {
-        return (this.today / this.goal) * 100
-      }
-    }
+  computed: {
+    ...mapGetters({
+      percentage: 'timer/percentage'
+    })
+  },
+  methods: {
+    ...mapActions({
+      initializeToday: 'timer/initializeToday'
+    })
+  },
+  mounted() {
+    this.initializeToday()
   }
 }
 </script>

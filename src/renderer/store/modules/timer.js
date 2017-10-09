@@ -12,7 +12,9 @@ const timer = {
     resting: false,
     pausing: true,
     seconds: workMinutes * 60,
-    timerId: 0
+    timerId: 0,
+    today: 0,
+    goal: 8
   },
   mutations: {
     UPDATE_RUNNING(state, value) {
@@ -26,6 +28,9 @@ const timer = {
     },
     UPDATE_COUNT(state, value) {
       state.seconds = value
+    },
+    UPDATE_TODAY(state, value) {
+      state.today = value
     }
   },
   actions: {
@@ -39,12 +44,12 @@ const timer = {
         return getters.expired ? dispatch('onExpired') : commit('UPDATE_COUNT', state.seconds - 1)
       }, 1000)
     },
-    onExpired: async ({commit, state, dispatch}) => {
+    onExpired: ({commit, state, dispatch}) => {
       if (state.resting) {
         dispatch('reset')
         return notify({title: 'Break has finished!', body: 'Move on to next pomodoro!'})
       }
-      await pomodoro.add()
+      dispatch('updateToday')
       commit('UPDATE_RESTING', true)
       commit('UPDATE_COUNT', restMinutes * 60)
       return notify({title: 'Pomodoro has finished!', body: 'Well done! Let\'s take a break!'})
@@ -58,12 +63,29 @@ const timer = {
     pause: ({commit, state}) => {
       clearInterval(state.timerId)
       commit('UPDATE_PAUSING', true)
+    },
+    initializeToday: async ({commit}) => {
+      try {
+        const count = await pomodoro.today()
+        commit('UPDATE_TODAY', count)
+      } catch (err) {
+        console.error(err)
+      }
+    },
+    updateToday: async ({commit}) => {
+      try {
+        const count = await pomodoro.update()
+        commit('UPDATE_TODAY', count)
+      } catch (err) {
+        console.error(err)
+      }
     }
   },
   getters: {
     formattedTime: state => formatTime(state.seconds),
     resettable: state => state.pausing === true && state.seconds !== workMinutes * 60,
-    expired: state => state.seconds === 0
+    expired: state => state.seconds === 0,
+    percentage: state => (state.today / state.goal) * 100
   }
 }
 

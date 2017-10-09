@@ -2,7 +2,7 @@
   <div class="timer-board">
     <timer-counter></timer-counter>
     <timer-button :running="running"></timer-button>
-     <timer-today :resting="resting"></timer-today>
+     <timer-today :resting="resting" :today="today" :goal="goal"></timer-today>
   </div>
 </template>
 
@@ -22,7 +22,9 @@ export default {
   computed: {
     ...mapState({
       running: state => state.timer.running,
-      resting: state => state.timer.resting
+      resting: state => state.timer.resting,
+      today: state => state.timer.today,
+      goal: state => state.timer.goal
     })
   }
 }
