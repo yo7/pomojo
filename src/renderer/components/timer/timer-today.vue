@@ -1,9 +1,9 @@
 <template>
   <div class="timer-today">
-    <progress class="progress" :value="percentage" max="100">70 %</progress>
-    <span class="text">
+    <div class="text">
       {{ today }}/{{ goal }}
-    </span>
+    </div>
+    <progress class="progress" :value="percentage" max="100"></progress>
   </div>
 </template>
 
@@ -48,18 +48,28 @@ export default {
 @import '../../style/color.scss';
 
 .timer-today {
-  height: 10%;
-  display: flex;
-  justify-content: space-around;
   align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 20%;
+  padding: 0.5rem 1rem;
+}
+
+.text {
+  color: $secondary-text;
+  display: inline-block;
+  font-size: 1.2rem;
+  font-weight: 200;
+  margin-left: auto;
 }
 
 .progress {
   border: none;
   border-radius: 5rem;
-  height: 0.6rem;
+  height: 0.8rem;
+  width: 100%;
   overflow: hidden;
-  flex-basis: 75%;
   -webkit-appearance: none;
 
   &::-webkit-progress-bar {
@@ -69,13 +79,5 @@ export default {
   &::-webkit-progress-value {
     background-color: $highlight;
   }
-}
-
-.text {
-  color: $secondary-text;
-  display: inline-block;
-  flex-basis: auto;
-  font-size: 1rem;
-  font-weight: 200;
 }
 </style>

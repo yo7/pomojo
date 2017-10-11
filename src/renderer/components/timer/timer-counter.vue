@@ -30,7 +30,7 @@ export default {
   color: $primary-text;
   display: flex;
   align-items: center;
-  height: 60%;
+  height: 50%;
   justify-content: center;
   font-size: 3.5rem;
   font-weight: 500;
