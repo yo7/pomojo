@@ -29,9 +29,9 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      percentage: 'timer/percentage'
-    })
+    percentage() {
+     return (this.today / this.goal) * 100
+    }
   },
   methods: {
     ...mapActions({

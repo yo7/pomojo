@@ -1,6 +1,6 @@
 <template>
   <div class="timer-board">
-    <timer-counter></timer-counter>
+    <timer-counter :seconds="seconds"></timer-counter>
     <timer-button :running="running"></timer-button>
      <timer-today :resting="resting" :today="today" :goal="goal"></timer-today>
   </div>
@@ -21,6 +21,7 @@ export default {
   },
   computed: {
     ...mapState({
+      seconds: state => state.timer.seconds,
       running: state => state.timer.running,
       resting: state => state.timer.resting,
       today: state => state.timer.today,

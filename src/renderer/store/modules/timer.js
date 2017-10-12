@@ -40,8 +40,9 @@ const timer = {
       return state.running ? dispatch('run') : dispatch('pause')
     },
     run: ({commit, state, getters, dispatch}) => {
+      const expired = state.seconds === 0
       state.timerId = setInterval(() => {
-        return getters.expired ? dispatch('onExpired') : commit('UPDATE_COUNT', state.seconds - 1)
+        return expired ? dispatch('onExpired') : commit('UPDATE_COUNT', state.seconds - 1)
       }, 1000)
     },
     onExpired: ({commit, state, dispatch}) => {
@@ -82,10 +83,7 @@ const timer = {
     }
   },
   getters: {
-    formattedTime: state => formatTime(state.seconds),
-    resettable: state => state.pausing === true && state.seconds !== workMinutes * 60,
-    expired: state => state.seconds === 0,
-    percentage: state => (state.today / state.goal) * 100
+    resettable: state => state.pausing === true && state.seconds !== workMinutes * 60
   }
 }
 
