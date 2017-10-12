@@ -113,6 +113,7 @@
     "electron-packager": "^9.1.0",
     "nedb": "^1.8.0",
     "vue": "^2.4.4",
+    "vue-router": "^3.0.0",
     "vuex": "^2.4.0"
   }
 }
