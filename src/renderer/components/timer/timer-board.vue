@@ -2,7 +2,8 @@
   <div class="timer-board">
     <timer-counter :seconds="seconds"></timer-counter>
     <timer-button :running="running"></timer-button>
-     <timer-today :resting="resting" :today="today" :goal="goal"></timer-today>
+    <timer-reset :pausing="pausing" :seconds="seconds"></timer-reset>
+    <timer-today :resting="resting" :today="today" :goal="goal"></timer-today>
   </div>
 </template>
 
@@ -10,6 +11,7 @@
 import {mapState} from 'vuex'
 import TimerCounter from './timer-counter'
 import TimerButton from './timer-button'
+import TimerReset from './timer-reset'
 import TimerToday from './timer-today'
 
 export default {
@@ -17,6 +19,7 @@ export default {
   components: {
     TimerCounter,
     TimerButton,
+    TimerReset,
     TimerToday
   },
   computed: {
@@ -24,6 +27,7 @@ export default {
       seconds: state => state.timer.seconds,
       running: state => state.timer.running,
       resting: state => state.timer.resting,
+      pausing: state => state.timer.pausing,
       today: state => state.timer.today,
       goal: state => state.timer.goal
     })

@@ -11,10 +11,20 @@ import {mapGetters, mapActions} from 'vuex'
 
 export default {
   name: 'timer-reset',
+  props: {
+    pausing: {
+      type: Boolean,
+      required: true
+    },
+    seconds: {
+      type: Number,
+      required: true
+    }
+  },
   computed: {
-    ...mapGetters({
-      resettable: 'timer/resettable'
-    })
+    resettable() {
+       return this.pausing && this.seconds !== 1500
+    }
   },
   methods: {
     ...mapActions({
@@ -32,7 +42,7 @@ export default {
   font-size: 1.2rem;
   font-weight: 600;
   color: $highlight;
-  margin-top: 0.5rem;
+  height: 10%;
 
   span {
     cursor: pointer;

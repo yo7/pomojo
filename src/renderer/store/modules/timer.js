@@ -81,9 +81,6 @@ const timer = {
         console.error(err)
       }
     }
-  },
-  getters: {
-    resettable: state => state.pausing === true && state.seconds !== workMinutes * 60
   }
 }
 

@@ -1,23 +1,18 @@
 <template>
   <div class="timer-button">
-    <div class="timer-icon">
-      <i
-        class="icon fa"
-        :class="{'fa-pause': running, 'fa-play': !running}"
-         @click="toggle">
-      </i>
-    </div>
-    <timer-reset></timer-reset>
+    <i
+      class="icon fa"
+      :class="{'fa-pause': running, 'fa-play': !running}"
+       @click="toggle">
+    </i>
   </div>
 </template>
 
 <script>
 import {mapActions} from 'vuex'
-import TimerReset from './timer-reset'
 
 export default {
   name: 'timer-button',
-  components: {TimerReset},
   props: {
     running: {
       type: Boolean,
@@ -35,11 +30,9 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../style/color.scss';
-.timer-button {
-  height: 30%;
-}
 
-.timer-icon {
+.timer-button {
+  height: 20%;
   display: flex;
   justify-content: center;
   align-items: center;
