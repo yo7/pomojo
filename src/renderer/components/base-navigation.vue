@@ -1,8 +1,19 @@
 <template>
   <div class="base-navigation">
-    <span class="nav-item" @click="close">
-      <i class="fa fa-2x fa-power-off"></i>
-    </span>
+    <div v-if="this.$route.path === '/'">
+      <router-link to="/preferences">
+        <span class="nav-item">
+          <i class="fa fa-2x fa-cog"></i>
+        </span>
+      </router-link>
+    </div>
+    <div v-else>
+      <router-link to="/">
+        <span class="nav-item">
+          <i class="fa fa-2x fa-times"></i>
+        </span>
+      </router-link>
+    </div>
   </div>
 </template>
 

@@ -1,21 +1,19 @@
 <template>
   <div class="container">
     <base-navigation></base-navigation>
-    <div class="board">
-      <timer-board></timer-board>
-    </div>
+    <base-board></base-board>
   </div>
 </template>
 
 <script>
 import BaseNavigation from './components/base-navigation'
-import TimerBoard from './components/timer/timer-board'
+import BaseBoard from './components/base-board'
 
 export default {
   name: 'app',
   components: {
     BaseNavigation,
-    TimerBoard
+    BaseBoard
   }
 }
 </script>
@@ -47,9 +45,5 @@ export default {
     position: absolute;
     width: 0;
   }
-}
-
-.board {
-  height: 90%;
 }
 </style>
