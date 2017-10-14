@@ -29,7 +29,7 @@ export default {
       resting: state => state.timer.resting,
       pausing: state => state.timer.pausing,
       today: state => state.timer.today,
-      goal: state => state.timer.goal
+      goal: state => state.preferences.goal
     })
   }
 }

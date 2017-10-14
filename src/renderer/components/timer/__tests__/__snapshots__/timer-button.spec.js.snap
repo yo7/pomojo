@@ -1,8 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TimerButton renders correctly 1`] = `
-<div class="timer-button">
-    <div class="timer-icon"><i class="icon fa fa-play"></i></div>
-    <!---->
-</div>
-`;
+exports[`TimerButton renders correctly 1`] = `<div class="timer-button"><i class="icon fa fa-play"></i></div>`;

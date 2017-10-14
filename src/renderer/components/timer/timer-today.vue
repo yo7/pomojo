@@ -1,5 +1,5 @@
 <template>
-  <div class="timer-today">
+  <div class="timer-today" v-if="isLoaded">
     <div class="text">
       {{ today }}/{{ goal }}
     </div>
@@ -8,8 +8,6 @@
 </template>
 
 <script>
-import {mapGetters, mapActions} from 'vuex'
-
 export default {
   name: 'timer-today',
   props: {
@@ -20,7 +18,6 @@ export default {
     },
     today: {
       type: Number,
-      default: 0,
       requried: true
     },
     goal: {
@@ -30,16 +27,11 @@ export default {
   },
   computed: {
     percentage() {
-     return (this.today / this.goal) * 100
+      return (this.today / this.goal) * 100
+    },
+    isLoaded() {
+      return this.today !== undefined && (this.goal !== undefined && this.goal !== 0)
     }
-  },
-  methods: {
-    ...mapActions({
-      initializeToday: 'timer/initializeToday'
-    })
-  },
-  mounted() {
-    this.initializeToday()
   }
 }
 </script>

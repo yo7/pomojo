@@ -1,6 +1,5 @@
-import formatTime from '../../helpers/format-time'
 import notify from '../../helpers/notify'
-import pomodoro from '../../datastore/pomodoro'
+import pomodoro from '../../datastore/pomodoro-data'
 
 const workMinutes = 25
 const restMinutes = 5
@@ -13,8 +12,7 @@ const timer = {
     pausing: true,
     seconds: workMinutes * 60,
     timerId: 0,
-    today: 0,
-    goal: 8
+    today: 0
   },
   mutations: {
     UPDATE_RUNNING(state, value) {
@@ -39,9 +37,9 @@ const timer = {
       commit('UPDATE_RUNNING', !state.running)
       return state.running ? dispatch('run') : dispatch('pause')
     },
-    run: ({commit, state, getters, dispatch}) => {
-      const expired = state.seconds === 0
+    run: ({commit, state, dispatch}) => {
       state.timerId = setInterval(() => {
+        const expired = state.seconds === 0
         return expired ? dispatch('onExpired') : commit('UPDATE_COUNT', state.seconds - 1)
       }, 1000)
     },

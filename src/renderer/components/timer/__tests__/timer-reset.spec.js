@@ -13,12 +13,14 @@ describe('TimerReset', () => {
     let wrapper
 
     beforeEach(() => {
-      const getters = {'timer/resettable': () => true}
       actions = {
         'timer/reset': jest.fn()
       }
-      const store = new Vuex.Store({getters, actions})
-      wrapper = shallow(TimerReset, {store})
+      const store = new Vuex.Store({actions})
+      wrapper = shallow(TimerReset, {store, propsData: {
+        pausing: true,
+        seconds: 500
+      }})
       text = wrapper.find('.timer-reset > span')
     })
 
@@ -47,9 +49,10 @@ describe('TimerReset', () => {
     let wrapper
 
     beforeEach(() => {
-      const getters = {'timer/resettable': () => false}
-      const store = new Vuex.Store({getters})
-      wrapper = shallow(TimerReset, {store})
+      wrapper = shallow(TimerReset, {propsData: {
+        pausing: false,
+        seconds: 1500
+      }})
       text = wrapper.find('.timer-reset > span')
     })
 

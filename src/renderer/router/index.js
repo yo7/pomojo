@@ -7,8 +7,8 @@ Vue.use(VueRouter)
 
 const router = new VueRouter({
   routes: [
-    { path: '/', component: TimerBoard },
-    { path: '/preferences', component: PreferencesBoard }
+    {path: '/', component: TimerBoard},
+    {path: '/preferences', component: PreferencesBoard}
   ]
 })
 

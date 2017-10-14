@@ -18,15 +18,8 @@
 </template>
 
 <script>
-import app from '../helpers/app'
-
 export default {
-  name: 'base-navigation',
-  methods: {
-    close() {
-      app.close()
-    }
-  }
+  name: 'base-navigation'
 }
 </script>
 

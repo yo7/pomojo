@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import {mapGetters, mapActions} from 'vuex'
+import {mapActions} from 'vuex'
 
 export default {
   name: 'timer-reset',
@@ -23,7 +23,7 @@ export default {
   },
   computed: {
     resettable() {
-       return this.pausing && this.seconds !== 1500
+      return this.pausing && this.seconds !== 1500
     }
   },
   methods: {
