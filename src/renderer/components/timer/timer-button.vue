@@ -2,23 +2,21 @@
   <div class="timer-button">
     <i
       class="icon fa"
-      :class="{'fa-pause': running, 'fa-play': !running}"
+      :class="{'fa-pause': pausable, 'fa-play': !pausable}"
        @click="toggle">
     </i>
   </div>
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 
 export default {
   name: 'timer-button',
-  props: {
-    running: {
-      type: Boolean,
-      default: false,
-      required: true
-    }
+  computed: {
+    ...mapGetters({
+      pausable: 'timer/pausable'
+    })
   },
   methods: {
     ...mapActions({

@@ -1,5 +1,5 @@
 <template>
-  <div class="timer-today" v-if="isLoaded">
+  <div class="timer-today" v-if="loaded">
     <div class="text">
       {{ today }}/{{ goal }}
     </div>
@@ -11,11 +11,6 @@
 export default {
   name: 'timer-today',
   props: {
-    resting: {
-      type: Boolean,
-      default: false,
-      required: true
-    },
     today: {
       type: Number,
       requried: true
@@ -29,7 +24,7 @@ export default {
     percentage() {
       return (this.today / this.goal) * 100
     },
-    isLoaded() {
+    loaded() {
       return this.today !== undefined && (this.goal !== undefined && this.goal !== 0)
     }
   }

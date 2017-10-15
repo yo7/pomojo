@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex'
 import formatTime from '../../helpers/format-time'
 import * as tray from '../../helpers/tray'
 
@@ -12,8 +13,15 @@ export default {
   props: {
     seconds: {
       type: Number,
-      required: true,
-      default: 25 * 60
+      required: true
+    },
+    running: {
+      type: Boolean,
+      require: true
+    },
+    pausing: {
+      type: Boolean,
+      required: true
     }
   },
   computed: {
@@ -21,8 +29,15 @@ export default {
       return formatTime(this.seconds)
     }
   },
+  methods: {
+    ...mapActions({
+      initializeSeconds: 'timer/initializeSeconds'
+    })
+  },
   mounted() {
-    tray.initialize()
+    if (!this.running) {
+      this.initializeSeconds()
+    }
   },
   updated() {
     tray.update(this.formattedTime)

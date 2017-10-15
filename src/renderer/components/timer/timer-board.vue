@@ -1,8 +1,8 @@
 <template>
   <div class="timer-board">
-    <timer-counter :seconds="seconds"></timer-counter>
-    <timer-button :running="running"></timer-button>
-    <timer-reset :pausing="pausing" :seconds="seconds"></timer-reset>
+    <timer-counter :seconds="seconds" :running="running" :pausing="pausing"></timer-counter>
+    <timer-button></timer-button>
+    <timer-reset :running="running" :pausing="pausing"></timer-reset>
     <timer-today :resting="resting" :today="today" :goal="goal"></timer-today>
   </div>
 </template>

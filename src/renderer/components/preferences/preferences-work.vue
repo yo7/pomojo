@@ -1,6 +1,6 @@
 <template>
   <div class="preferences-goal">
-    <preferences-select :options="goalCounts" :current="goal" :onChange="updateGoal"></preferences-select>
+    <preferences-select :options="workMinutesOptions" :current="workMinutes" :onChange="updateWorkMinutes"></preferences-select>
   </div>
 </template>
 
@@ -9,22 +9,22 @@ import {mapActions} from 'vuex'
 import PreferencesSelect from './preferences-select.vue'
 
 export default {
-  name: 'preferences-goal',
+  name: 'preferences-work',
   components: {
     PreferencesSelect
   },
   props: {
-    goal: {
+    workMinutes: {
       type: Number,
-      required: true
+      require: true
     }
   },
   data: () => ({
-    goalCounts: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+    workMinutesOptions: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55]
   }),
   methods: {
     ...mapActions({
-      updateGoal: 'preferences/updateGoal'
+      updateWorkMinutes: 'preferences/updateWorkMinutes'
     })
   }
 }

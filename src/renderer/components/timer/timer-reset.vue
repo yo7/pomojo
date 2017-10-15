@@ -12,18 +12,18 @@ import {mapActions} from 'vuex'
 export default {
   name: 'timer-reset',
   props: {
-    pausing: {
+    running: {
       type: Boolean,
       required: true
     },
-    seconds: {
-      type: Number,
+    pausing: {
+      type: Boolean,
       required: true
     }
   },
   computed: {
     resettable() {
-      return this.pausing && this.seconds !== 1500
+      return this.running && this.pausing
     }
   },
   methods: {

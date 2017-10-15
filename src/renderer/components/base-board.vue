@@ -6,18 +6,22 @@
 
 <script>
 import {mapActions} from 'vuex'
+import * as tray from '../helpers/tray'
 
 export default {
   name: 'base-board',
   methods: {
     ...mapActions({
       initializeToday: 'timer/initializeToday',
+      initializeWorkMinutes: 'preferences/initializeWorkMinutes',
       initializeGoal: 'preferences/initializeGoal'
     })
   },
   mounted() {
-    this.initializeGoal()
     this.initializeToday()
+    this.initializeWorkMinutes()
+    this.initializeGoal()
+    tray.initialize()
   }
 }
 </script>
