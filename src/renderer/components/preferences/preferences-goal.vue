@@ -26,11 +26,7 @@ export default {
       required: true
     }
   },
-  data() {
-    return {
-      goalCounts: Array.from(Array(16).keys())
-    }
-  },
+  data: () => ({goalCounts: Array.from(Array(16).keys())}),
   methods: {
     ...mapActions({
       updateGoal: 'preferences/updateGoal'

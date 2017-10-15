@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TimerBoard renders correctly 1`] = `
+<div class="timer-board">
+    <!---->
+    <!---->
+    <!---->
+    <!---->
+</div>
+`;

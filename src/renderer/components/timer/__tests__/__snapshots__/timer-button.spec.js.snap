@@ -1,3 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TimerButton renders correctly 1`] = `<div class="timer-button"><i class="icon fa fa-play"></i></div>`;
+exports[`TimerButton if running renders correctly 1`] = `<div class="timer-button"><i class="icon fa fa-pause"></i></div>`;
+
+exports[`TimerButton unless running renders correctly 1`] = `<div class="timer-button"><i class="icon fa fa-play"></i></div>`;

@@ -1811,12 +1811,6 @@ compare-version@^0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/compare-version/-/compare-version-0.1.2.tgz#0162ec2d9351f5ddd59a9202cba935366a725080"
 
-compiler@^0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/compiler/-/compiler-0.1.2.tgz#66b32782294ba575fa0d811e88590dbf95d02646"
-  dependencies:
-    node-file "*"
-
 compress-commons@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/compress-commons/-/compress-commons-1.2.0.tgz#58587092ef20d37cb58baf000112c9278ff73b9f"
@@ -5002,10 +4996,6 @@ node-cache@^4.1.1:
   dependencies:
     clone "2.x"
     lodash "4.x"
-
-node-file@*:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/node-file/-/node-file-0.1.1.tgz#5082c78aef403cb2c20e0f73c302434276c3723c"
 
 node-gyp@^3.3.1:
   version "3.6.2"

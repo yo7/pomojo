@@ -108,7 +108,6 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
-    "compiler": "^0.1.2",
     "date-fns": "^1.29.0",
     "electron-is-dev": "^0.3.0",
     "electron-packager": "^9.1.0",
