@@ -14,12 +14,14 @@ export default {
     ...mapActions({
       initializeToday: 'timer/initializeToday',
       initializeWorkMinutes: 'preferences/initializeWorkMinutes',
+      initializeRestMinutes: 'preferences/initializeRestMinutes',
       initializeGoal: 'preferences/initializeGoal'
     })
   },
   mounted() {
     this.initializeToday()
     this.initializeWorkMinutes()
+    this.initializeRestMinutes()
     this.initializeGoal()
     tray.initialize()
   }

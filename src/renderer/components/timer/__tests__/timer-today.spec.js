@@ -7,7 +7,6 @@ describe('TimerToday', () => {
 
   it('contains text when it has today count and goal count', () => {
     wrapper = shallow(TimerToday, {propsData: {
-      resting: false,
       today: 4,
       goal: 8
     }})
@@ -16,7 +15,6 @@ describe('TimerToday', () => {
 
   it('does not contain text when the goal count is 0', () => {
     wrapper = shallow(TimerToday, {propsData: {
-      resting: false,
       today: 4,
       goal: 0
     }})
@@ -25,7 +23,6 @@ describe('TimerToday', () => {
 
   it('contains today and goal text', () => {
     wrapper = shallow(TimerToday, {propsData: {
-      resting: false,
       today: 2,
       goal: 8
     }})
@@ -35,7 +32,6 @@ describe('TimerToday', () => {
   it('renders correctly', () => {
     const renderer = createRenderer()
     wrapper = shallow(TimerToday, {propsData: {
-      resting: false,
       toay: 4,
       goal: 8
     }})

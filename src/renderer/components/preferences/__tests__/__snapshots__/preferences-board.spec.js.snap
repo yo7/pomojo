@@ -4,5 +4,6 @@ exports[`PreferencesBoard renders correctly 1`] = `
 <div class="preferences-board">
     <!---->
     <!---->
+    <!---->
 </div>
 `;

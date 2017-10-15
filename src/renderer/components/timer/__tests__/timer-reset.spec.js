@@ -18,8 +18,8 @@ describe('TimerReset', () => {
       }
       const store = new Vuex.Store({actions})
       wrapper = shallow(TimerReset, {store, propsData: {
-        pausing: true,
-        seconds: 500
+        running: true,
+        pausing: true
       }})
       text = wrapper.find('.timer-reset > span')
     })
@@ -50,8 +50,8 @@ describe('TimerReset', () => {
 
     beforeEach(() => {
       wrapper = shallow(TimerReset, {propsData: {
-        pausing: false,
-        seconds: 1500
+        running: false,
+        pausing: false
       }})
       text = wrapper.find('.timer-reset > span')
     })

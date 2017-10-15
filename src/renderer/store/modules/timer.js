@@ -1,6 +1,8 @@
 import notify from '../../helpers/notify'
 import pomodoroData from '../../datastore/pomodoro-data'
 import preferencesData from '../../datastore/preferences-data'
+import * as tray from '../../helpers/tray'
+import formatSeconds from '../../helpers/format-seconds'
 import minutes from './state/minutes'
 
 const timer = {
@@ -23,7 +25,7 @@ const timer = {
     UPDATE_RESTING(state, value) {
       state.resting = value
     },
-    UPDATE_COUNT(state, value) {
+    UPDATE_SECONDS(state, value) {
       state.seconds = value
     },
     UPDATE_TODAY(state, value) {
@@ -38,26 +40,37 @@ const timer = {
       commit('UPDATE_RUNNING', true)
       commit('UPDATE_PAUSING', false)
       state.timerId = setInterval(() => {
-        return (state.seconds === 0) ? dispatch('onExpired') : commit('UPDATE_COUNT', state.seconds - 1)
+        if (state.seconds === 0) {
+          return dispatch('onExpired')
+        }
+        commit('UPDATE_SECONDS', state.seconds - 1)
+        dispatch('updateTray')
       }, 1000)
     },
-    onExpired: ({commit, state, dispatch}) => {
+    onExpired: async ({commit, state, dispatch}) => {
       if (state.resting) {
         dispatch('reset')
         return notify({title: 'Break has finished!', body: 'Move on to next pomodoro!'})
       }
-      dispatch('updateToday')
-      commit('UPDATE_RESTING', true)
-      commit('UPDATE_COUNT', minutes.rest * 60)
-      return notify({title: 'Pomodoro has finished!', body: 'Well done! Let\'s take a break!'})
+
+      try {
+        const seconds = await preferencesData.findRestMinutes() * 60 || minutes.rest * 60
+        dispatch('updateToday')
+        commit('UPDATE_SECONDS', seconds)
+        commit('UPDATE_RESTING', true)
+        return notify({title: 'Pomodoro has finished!', body: 'Well done! Let\'s take a break!'})
+      } catch (err) {
+        console.error(err)
+      }
     },
-    reset: async ({commit, state}) => {
+    reset: async ({commit, state, dispatch}) => {
       try {
         const seconds = await preferencesData.findWorkMinutes() * 60
-        commit('UPDATE_COUNT', seconds)
+        commit('UPDATE_SECONDS', seconds)
         commit('UPDATE_RUNNING', false)
         commit('UPDATE_RESTING', false)
         commit('UPDATE_PAUSING', false)
+        dispatch('updateTray')
         clearInterval(state.timerId)
       } catch (err) {
         console.error(err)
@@ -66,14 +79,6 @@ const timer = {
     pause: ({commit, state}) => {
       clearInterval(state.timerId)
       commit('UPDATE_PAUSING', true)
-    },
-    initializeToday: async ({commit}) => {
-      try {
-        const count = await pomodoroData.today()
-        commit('UPDATE_TODAY', count)
-      } catch (err) {
-        console.error(err)
-      }
     },
     updateToday: async ({commit}) => {
       try {
@@ -85,11 +90,23 @@ const timer = {
     },
     initializeSeconds: async ({commit, state}) => {
       const seconds = await preferencesData.findWorkMinutes() * 60 || state.seconds
-      commit('UPDATE_COUNT', seconds)
+      commit('UPDATE_SECONDS', seconds)
+    },
+    initializeToday: async ({commit}) => {
+      try {
+        const count = await pomodoroData.today()
+        commit('UPDATE_TODAY', count)
+      } catch (err) {
+        console.error(err)
+      }
+    },
+    updateTray: ({getters}) => {
+      tray.update(getters.formattedSeconds)
     }
   },
   getters: {
-    pausable: state => state.running && !state.pausing
+    pausable: state => state.running && !state.pausing,
+    formattedSeconds: state => formatSeconds(state.seconds)
   }
 }
 

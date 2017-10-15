@@ -4,27 +4,33 @@ const data = db.preferences
 
 const preferencesData = {
   updateWorkMinutes(value) {
-    return updateCount('workMinutes', value)
+    return update('workMinutes', value)
+  },
+  updateRestMinutes(value) {
+    return update('restMinutes', value)
   },
   updateGoal(value) {
-    return updateCount('goal', value)
+    return update('goal', value)
   },
   findWorkMinutes() {
-    return findCount('workMinutes')
+    return find('workMinutes')
+  },
+  findRestMinutes() {
+    return find('restMinutes')
   },
   findGoal() {
-    return findCount('goal')
+    return find('goal')
   }
 }
 
-const updateCount = (type, value) =>
+const update = (type, value) =>
   new Promise((resolve, reject) => {
     data.update({type}, {type, value}, {upsert: true, returnUpdatedDocs: true}, (err, _, docs) => {
       return err ? reject(err) : resolve(docs.value)
     })
   })
 
-const findCount = type =>
+const find = type =>
   new Promise((resolve, reject) => {
     data.find({type}, (err, docs) => {
       if (err) {

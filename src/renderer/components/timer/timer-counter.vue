@@ -1,33 +1,23 @@
 <template>
   <div class="timer-counter">
-    {{ formattedTime }}
+    {{ formattedSeconds }}
   </div>
 </template>
 
 <script>
-import {mapActions} from 'vuex'
-import formatTime from '../../helpers/format-time'
-import * as tray from '../../helpers/tray'
+import {mapGetters, mapActions} from 'vuex'
 
 export default {
   props: {
-    seconds: {
-      type: Number,
-      required: true
-    },
     running: {
       type: Boolean,
       require: true
-    },
-    pausing: {
-      type: Boolean,
-      required: true
     }
   },
   computed: {
-    formattedTime() {
-      return formatTime(this.seconds)
-    }
+    ...mapGetters({
+      formattedSeconds: 'timer/formattedSeconds'
+    })
   },
   methods: {
     ...mapActions({
@@ -38,9 +28,6 @@ export default {
     if (!this.running) {
       this.initializeSeconds()
     }
-  },
-  updated() {
-    tray.update(this.formattedTime)
   }
 }
 </script>
