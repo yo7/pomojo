@@ -49,16 +49,16 @@ const timer = {
     },
     onExpired: async ({commit, state, dispatch}) => {
       if (state.resting) {
-        dispatch('reset')
-        return notify({title: 'Break has finished!', body: 'Move on to next pomodoro!'})
+        await dispatch('reset')
+        dispatch('sendNotification', {title: 'Break has finished!', body: 'Move on to next pomodoro!'})
       }
 
       try {
         const seconds = await preferencesData.findRestMinutes() * 60 || minutes.rest * 60
-        dispatch('updateToday')
+        await dispatch('updateToday')
+        await dispatch('sendNotification', {title: 'Pomodoro has finished!', body: 'Well done! Let\'s take a break!'})
         commit('UPDATE_SECONDS', seconds)
         commit('UPDATE_RESTING', true)
-        return notify({title: 'Pomodoro has finished!', body: 'Well done! Let\'s take a break!'})
       } catch (err) {
         console.error(err)
       }
@@ -102,6 +102,11 @@ const timer = {
     },
     updateTray: ({getters}) => {
       tray.update(getters.formattedSeconds)
+    },
+    sendNotification: ({rootState}, {title, body}) => {
+      if (rootState.preferences.notification) {
+        return notify({title, body})
+      }
     }
   },
   getters: {

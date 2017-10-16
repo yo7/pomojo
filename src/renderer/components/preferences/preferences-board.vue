@@ -9,15 +9,19 @@
     <preferences-row title="Daily Goal">
       <preferences-goal :goal="goal"></preferences-goal>
     </preferences-row>
+    <preferences-row title="Notification">
+      <preferences-notification :notification="notification"></preferences-notification>
+    </preferences-row>
   </div>
 </template>
 
 <script>
 import {mapState} from 'vuex'
-import PreferencesRow from './preferences-row.vue'
-import PreferencesWork from './preferences-work.vue'
-import PreferencesRest from './preferences-rest.vue'
+import PreferencesRow from './preferences-row'
+import PreferencesWork from './preferences-work'
+import PreferencesRest from './preferences-rest'
 import PreferencesGoal from './preferences-goal'
+import PreferencesNotification from './preferences-notification'
 
 export default {
   name: 'preferences-board',
@@ -25,13 +29,15 @@ export default {
     PreferencesRow,
     PreferencesWork,
     PreferencesRest,
-    PreferencesGoal
+    PreferencesGoal,
+    PreferencesNotification,
   },
   computed: {
     ...mapState({
       workMinutes: state => state.preferences.workMinutes,
       restMinutes: state => state.preferences.restMinutes,
-      goal: state => state.preferences.goal
+      goal: state => state.preferences.goal,
+      notification: state => state.preferences.notification
     })
   }
 }

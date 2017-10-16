@@ -12,6 +12,9 @@ const preferencesData = {
   updateGoal(value) {
     return update('goal', value)
   },
+  updateNotification(value) {
+    return update('notification', value)
+  },
   findWorkMinutes() {
     return find('workMinutes')
   },
@@ -20,6 +23,9 @@ const preferencesData = {
   },
   findGoal() {
     return find('goal')
+  },
+  findNotification() {
+    return find('notification')
   }
 }
 

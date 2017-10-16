@@ -6,7 +6,8 @@ const preferences = {
   state: {
     workMinutes: minutes.work,
     restMinutes: minutes.rest,
-    goal: 8
+    goal: 8,
+    notification: true
   },
   mutations: {
     UPDATE_WORK_MINUTES(state, value) {
@@ -17,6 +18,9 @@ const preferences = {
     },
     UPDATE_GOAL(state, value) {
       state.goal = value
+    },
+    UPDATE_NOTIFICATION(state, value) {
+      state.notification = value
     }
   },
   actions: {
@@ -44,6 +48,10 @@ const preferences = {
         console.error(err)
       }
     },
+    toggleNotification: async ({commit, state}) => {
+      const enabled = await preferencesData.updateNotification(!state.notification)
+      commit('UPDATE_NOTIFICATION', enabled)
+    },
     initializeWorkMinutes: async ({commit, state}) => {
       try {
         const minutes = await preferencesData.findWorkMinutes() || state.workMinutes
@@ -64,6 +72,17 @@ const preferences = {
       try {
         const count = await preferencesData.findGoal() || state.goal
         commit('UPDATE_GOAL', count)
+      } catch (err) {
+        console.error(err)
+      }
+    },
+    initializeNotification: async ({commit, state}) => {
+      try {
+        let enabled = await preferencesData.findNotification()
+        if (enabled === undefined) {
+          enabled = state.notification
+        }
+        commit('UPDATE_NOTIFICATION', enabled)
       } catch (err) {
         console.error(err)
       }

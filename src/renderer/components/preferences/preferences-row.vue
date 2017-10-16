@@ -26,7 +26,7 @@ export default {
   justify-content: space-between;
 
   &:not(:first-child) {
-    margin-top: 1rem;
+    margin-top: 1.5rem;
   }
 }
 

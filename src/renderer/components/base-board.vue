@@ -15,7 +15,8 @@ export default {
       initializeToday: 'timer/initializeToday',
       initializeWorkMinutes: 'preferences/initializeWorkMinutes',
       initializeRestMinutes: 'preferences/initializeRestMinutes',
-      initializeGoal: 'preferences/initializeGoal'
+      initializeGoal: 'preferences/initializeGoal',
+      initializeNotification: 'preferences/initializeNotification'
     })
   },
   mounted() {
@@ -23,6 +24,7 @@ export default {
     this.initializeWorkMinutes()
     this.initializeRestMinutes()
     this.initializeGoal()
+    this.initializeNotification()
     tray.initialize()
   }
 }
