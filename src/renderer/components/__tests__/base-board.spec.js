@@ -3,7 +3,6 @@ import Vuex from 'vuex'
 import {shallow} from 'vue-test-utils'
 import {createRenderer} from 'vue-server-renderer'
 import BaseBoard from '../base-board.vue'
-import * as tray from '../../helpers/tray'
 
 Vue.use(Vuex)
 
@@ -14,38 +13,32 @@ describe('BaseBoard', () => {
 
   beforeEach(() => {
     actions = {
-      'timer/initializeToday': jest.fn(),
-      'preferences/initializeWorkMinutes': jest.fn(),
-      'preferences/initializeRestMinutes': jest.fn(),
-      'preferences/initializeGoal': jest.fn()
+      'preferences/loadWorkMinutes': jest.fn(),
+      'preferences/loadRestMinutes': jest.fn(),
+      'preferences/loadGoal': jest.fn(),
+      'preferences/loadNotification': jest.fn()
     }
     store = new Vuex.Store({actions})
   })
 
-  it('initialize today on mounted', () => {
+  it('load work minutes preference on mounted', () => {
     shallow(BaseBoard, {store})
-    expect(actions['timer/initializeToday']).toHaveBeenCalled()
+    expect(actions['preferences/loadWorkMinutes']).toHaveBeenCalled()
   })
 
-  it('initialize work minutes on mounted', () => {
+  it('load rest minutes preference on mounted', () => {
     shallow(BaseBoard, {store})
-    expect(actions['preferences/initializeWorkMinutes']).toHaveBeenCalled()
+    expect(actions['preferences/loadRestMinutes']).toHaveBeenCalled()
   })
 
-  it('initialize rest minutes on mounted', () => {
+  it('load goal preference on mounted', () => {
     shallow(BaseBoard, {store})
-    expect(actions['preferences/initializeRestMinutes']).toHaveBeenCalled()
+    expect(actions['preferences/loadGoal']).toHaveBeenCalled()
   })
 
-  it('initialize goal on mounted', () => {
+  it('load noticication preference on mounted', () => {
     shallow(BaseBoard, {store})
-    expect(actions['preferences/initializeGoal']).toHaveBeenCalled()
-  })
-
-  it('initialize tray', () => {
-    jest.spyOn(tray, 'initialize')
-    shallow(BaseBoard, {store})
-    expect(tray.initialize).toHaveBeenCalled()
+    expect(actions['preferences/loadNotification']).toHaveBeenCalled()
   })
 
   it('renders correctly', () => {

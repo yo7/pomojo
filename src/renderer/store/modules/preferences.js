@@ -52,7 +52,7 @@ const preferences = {
       const enabled = await preferencesData.updateNotification(!state.notification)
       commit('UPDATE_NOTIFICATION', enabled)
     },
-    initializeWorkMinutes: async ({commit, state}) => {
+    loadWorkMinutes: async ({commit, state}) => {
       try {
         const minutes = await preferencesData.findWorkMinutes() || state.workMinutes
         commit('UPDATE_WORK_MINUTES', minutes)
@@ -60,7 +60,7 @@ const preferences = {
         console.error(err)
       }
     },
-    initializeRestMinutes: async ({commit, state}) => {
+    loadRestMinutes: async ({commit, state}) => {
       try {
         const minutes = await preferencesData.findRestMinutes() || state.workMinutes
         commit('UPDATE_REST_MINUTES', minutes)
@@ -68,15 +68,17 @@ const preferences = {
         console.error(err)
       }
     },
-    initializeGoal: async ({commit, state}) => {
+    loadGoal: async ({commit, state}) => {
       try {
-        const count = await preferencesData.findGoal() || state.goal
-        commit('UPDATE_GOAL', count)
+        const count = await preferencesData.findGoal()
+        return (count === undefined) ?
+          commit('UPDATE_GOAL', state.goal) :
+          commit('UPDATE_GOAL', count)
       } catch (err) {
         console.error(err)
       }
     },
-    initializeNotification: async ({commit, state}) => {
+    loadNotification: async ({commit, state}) => {
       try {
         let enabled = await preferencesData.findNotification()
         if (enabled === undefined) {

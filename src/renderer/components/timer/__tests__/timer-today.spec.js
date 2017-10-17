@@ -13,12 +13,12 @@ describe('TimerToday', () => {
     expect(wrapper.contains('.text')).toBe(true)
   })
 
-  it('does not contain text when the goal count is 0', () => {
+  it('does not display when the goal count is 0', () => {
     wrapper = shallow(TimerToday, {propsData: {
       today: 4,
       goal: 0
     }})
-    expect(wrapper.contains('.text')).toBe(false)
+    expect(wrapper.find('.timer-today').hasStyle('display', 'none')).toBeTruthy()
   })
 
   it('contains today and goal text', () => {
@@ -32,7 +32,7 @@ describe('TimerToday', () => {
   it('renders correctly', () => {
     const renderer = createRenderer()
     wrapper = shallow(TimerToday, {propsData: {
-      toay: 4,
+      today: 4,
       goal: 8
     }})
     renderer.renderToString(wrapper.vm, (err, str) => {

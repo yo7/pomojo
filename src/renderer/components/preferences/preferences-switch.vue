@@ -1,6 +1,11 @@
 <template>
   <span>
-    <input type="checkbox" id="switch" :class="checked" :checked="checked" @change="onChange">
+    <input
+      type="checkbox"
+      id="switch"
+      :class="checked"
+      :checked="checked"
+      @change="onChanged">
     <label for="switch"></label>
   </span>
 </template>
@@ -13,7 +18,7 @@ export default {
       type: Boolean,
       required: true
     },
-    onChange: {
+    onChanged: {
       type: Function,
       required: true
     }

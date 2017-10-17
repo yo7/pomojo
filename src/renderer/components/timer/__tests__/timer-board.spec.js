@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import {createRenderer} from 'vue-server-renderer'
 import {shallow} from 'vue-test-utils'
 import TimerBoard from '../timer-board.vue'
 
@@ -19,16 +18,23 @@ describe('TimerBoard', () => {
       goal: 8
     }
   }
-  const store = new Vuex.Store({state})
-  const wrapper = shallow(TimerBoard, {store})
+  const getters = {
+    'timer/formattedSeconds': jest.fn(),
+    'timer/pausable': jest.fn()
+  }
+  const actions = {
+    'timer/loadSeconds': jest.fn(),
+    'timer/loadToday': jest.fn()
+  }
+  const store = new Vuex.Store({state, getters, actions})
 
-  it('renders correctly', () => {
-    const renderer = createRenderer()
-    renderer.renderToString(wrapper.vm, (err, str) => {
-      if (err) {
-        throw new Error()
-      }
-      expect(str).toMatchSnapshot()
-    })
+  it('load today on mounted', () => {
+    shallow(TimerBoard, {store})
+    expect(actions['timer/loadToday']).toHaveBeenCalled()
+  })
+
+  it('load seconds on mounted unless timer is running', () => {
+    shallow(TimerBoard, {store})
+    expect(actions['timer/loadSeconds']).toHaveBeenCalled()
   })
 })

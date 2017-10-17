@@ -1,7 +1,10 @@
 <template>
   <label class="preferences-select">
     <select class="select" @change="update">
-      <option v-for="option in options" :value="option" :selected="option === current">
+      <option
+        v-for="option in options"
+        :value="option"
+        :selected="option === current">
         {{option}}
       </option>
     </select>
@@ -18,16 +21,16 @@ export default {
     },
     current: {
       type: Number,
-      require: true
+      required: true
     },
-    onChange: {
+    onChanged: {
       type: Function,
       required: true
     }
   },
   methods: {
     update(event) {
-      this.onChange(Number(event.target.value))
+      this.onChanged(Number(event.target.value))
     }
   }
 }
@@ -44,7 +47,7 @@ export default {
     font-family: "FontAwesome";
     color: $light;
     right: 0.5rem;
-    top: 0.2rem;
+    top: 0.8rem;
     pointer-events: none;
     position: absolute;
   }

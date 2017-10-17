@@ -1,14 +1,12 @@
 <template>
   <div class="timer-reset">
-    <span v-show="resettable" @click="reset">
+    <span v-show="resettable" @click="onClicked">
       reset
     </span>
   </div>
 </template>
 
 <script>
-import {mapActions} from 'vuex'
-
 export default {
   name: 'timer-reset',
   props: {
@@ -19,17 +17,16 @@ export default {
     pausing: {
       type: Boolean,
       required: true
+    },
+    onClicked: {
+      type: Function,
+      requied: true
     }
   },
   computed: {
     resettable() {
       return this.running && this.pausing
     }
-  },
-  methods: {
-    ...mapActions({
-      reset: 'timer/reset'
-    })
   }
 }
 </script>

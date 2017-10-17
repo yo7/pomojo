@@ -1,32 +1,15 @@
 <template>
   <div class="timer-counter">
-    {{ formattedSeconds }}
+    {{ text }}
   </div>
 </template>
 
 <script>
-import {mapGetters, mapActions} from 'vuex'
-
 export default {
   props: {
-    running: {
-      type: Boolean,
-      require: true
-    }
-  },
-  computed: {
-    ...mapGetters({
-      formattedSeconds: 'timer/formattedSeconds'
-    })
-  },
-  methods: {
-    ...mapActions({
-      initializeSeconds: 'timer/initializeSeconds'
-    })
-  },
-  mounted() {
-    if (!this.running) {
-      this.initializeSeconds()
+    text: {
+      type: String,
+      required: true
     }
   }
 }
@@ -41,7 +24,7 @@ export default {
   align-items: center;
   height: 50%;
   justify-content: center;
-  font-size: 3.5rem;
+  font-size: 4rem;
   font-weight: 500;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="timer-today" v-if="loaded">
+  <div class="timer-today" v-show="hasGoal">
     <div class="text">
       {{ today }}/{{ goal }}
     </div>
@@ -22,10 +22,12 @@ export default {
   },
   computed: {
     percentage() {
-      return (this.today / this.goal) * 100
+      if (this.hasGoal) {
+        return (this.today / this.goal) * 100
+      }
     },
-    loaded() {
-      return this.today !== undefined && (this.goal !== undefined && this.goal !== 0)
+    hasGoal() {
+      return this.goal > 0
     }
   }
 }

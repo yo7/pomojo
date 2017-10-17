@@ -2,26 +2,24 @@
   <div class="timer-button">
     <i
       class="icon fa"
-      :class="{'fa-pause': pausable, 'fa-play': !pausable}"
-       @click="toggle">
+      :class="{'fa-pause': status, 'fa-play': !status}"
+       @click="onClicked">
     </i>
   </div>
 </template>
 
 <script>
-import {mapGetters, mapActions} from 'vuex'
-
 export default {
   name: 'timer-button',
-  computed: {
-    ...mapGetters({
-      pausable: 'timer/pausable'
-    })
-  },
-  methods: {
-    ...mapActions({
-      toggle: 'timer/toggle'
-    })
+  props: {
+    status: {
+      type: Boolean,
+      required: true
+    },
+    onClicked: {
+      type: Function,
+      required: true
+    }
   }
 }
 </script>

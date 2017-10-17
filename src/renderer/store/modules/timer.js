@@ -88,11 +88,11 @@ const timer = {
         console.error(err)
       }
     },
-    initializeSeconds: async ({commit, state}) => {
+    loadSeconds: async ({commit, state}) => {
       const seconds = await preferencesData.findWorkMinutes() * 60 || state.seconds
       commit('UPDATE_SECONDS', seconds)
     },
-    initializeToday: async ({commit}) => {
+    loadToday: async ({commit}) => {
       try {
         const count = await pomodoroData.today()
         commit('UPDATE_TODAY', count)

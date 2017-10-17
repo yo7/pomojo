@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`PreferencesGoal renders correctly 1`] = `
-<div class="preferences-goal">
-    <!---->
-</div>
-`;
