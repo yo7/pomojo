@@ -24,10 +24,6 @@ export default {
   align-items: center;
   display: flex;
   justify-content: space-between;
-
-  &:not(:first-child) {
-    margin-top: 1.5rem;
-  }
 }
 
 .title {

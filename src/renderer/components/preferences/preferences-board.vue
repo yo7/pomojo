@@ -1,32 +1,45 @@
 <template>
   <div class="preferences-board">
-    <preferences-row title="Work Minutes">
-      <preferences-select
-        :options="workMinutesOptions"
-        :current="workMinutes"
-        :onChanged="updateWorkMinutes">
-      </preferences-select>
-    </preferences-row>
-    <preferences-row title="Rest Minutes">
-      <preferences-select
-        :options="restMinutesOptions"
-        :current="restMinutes"
-        :onChanged="updateRestMinutes">
-      </preferences-select>
-    </preferences-row>
-    <preferences-row title="Daily Goal">
-      <preferences-select
-        :options="goalCounts"
-        :current="goal"
-        :onChanged="updateGoal">
-      </preferences-select>
-    </preferences-row>
-    <preferences-row title="Notification">
-      <preferences-switch
-        :checked="notification"
-        :onChanged="toggleNotification">
-      </preferences-switch>
-    </preferences-row>
+    <div class="rows">
+      <div class="row">
+        <preferences-row title="Work Minutes">
+          <preferences-select
+            :options="workMinutesOptions"
+            :current="workMinutes"
+            :onChanged="updateWorkMinutes">
+          </preferences-select>
+        </preferences-row>
+      </div>
+      <div class="row">
+        <preferences-row title="Rest Minutes">
+          <preferences-select
+            :options="restMinutesOptions"
+            :current="restMinutes"
+            :onChanged="updateRestMinutes">
+          </preferences-select>
+        </preferences-row>
+      </div>
+      <div class="row">
+        <preferences-row title="Daily Goal">
+          <preferences-select
+            :options="goalCounts"
+            :current="goal"
+            :onChanged="updateGoal">
+          </preferences-select>
+        </preferences-row>
+      </div>
+      <div class="row">
+        <preferences-row title="Notification">
+          <preferences-switch
+            :checked="notification"
+            :onChanged="toggleNotification">
+          </preferences-switch>
+        </preferences-row>
+      </div>
+    </div>
+    <div class="bottom">
+      <preferences-quit></preferences-quit>
+    </div>
   </div>
 </template>
 
@@ -35,13 +48,15 @@ import {mapState, mapActions} from 'vuex'
 import PreferencesRow from './preferences-row'
 import PreferencesSelect from './preferences-select'
 import PreferencesSwitch from './preferences-switch'
+import PreferencesQuit from './preferences-quit'
 
 export default {
   name: 'preferences-board',
   components: {
     PreferencesRow,
     PreferencesSelect,
-    PreferencesSwitch
+    PreferencesSwitch,
+    PreferencesQuit
   },
   data: () => ({
     workMinutesOptions: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55],
@@ -67,9 +82,22 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 .preferences-board {
   height: 100%;
   padding: 1rem;
+}
+
+.rows {
+  height: 95%;
+}
+
+.row:not(:first-child) {
+  margin-top: 1.5rem;
+}
+
+.bottom {
+  height: 5%;
+  text-align: center;
 }
 </style>
