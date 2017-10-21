@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PreferencesSwitch renders correctly 1`] = `<span><input type="checkbox" id="switch" checked="checked" class="switch"> <label for="switch" class="label"></label></span>`;

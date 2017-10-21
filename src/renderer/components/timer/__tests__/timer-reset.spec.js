@@ -1,24 +1,20 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
 import {shallow} from 'vue-test-utils'
 import {createRenderer} from 'vue-server-renderer'
 import TimerReset from '../timer-reset.vue'
 
-Vue.use(Vuex)
-
 describe('TimerReset', () => {
-  describe('if resettable', () => {
-    let text
-    let actions
-    let wrapper
+  let propsData
+  let wrapper
+  let text
 
+  describe('if resettable', () => {
     beforeEach(() => {
-      const getters = {'timer/resettable': () => true}
-      actions = {
-        'timer/reset': jest.fn()
+      propsData = {
+        running: true,
+        pausing: true,
+        onClicked: jest.fn()
       }
-      const store = new Vuex.Store({getters, actions})
-      wrapper = shallow(TimerReset, {store})
+      wrapper = shallow(TimerReset, {propsData})
       text = wrapper.find('.timer-reset > span')
     })
 
@@ -28,7 +24,7 @@ describe('TimerReset', () => {
 
     it('reset timer on click', () => {
       text.trigger('click')
-      expect(actions['timer/reset']).toHaveBeenCalled()
+      expect(propsData.onClicked).toHaveBeenCalled()
     })
 
     it('renders correctly', () => {
@@ -43,13 +39,16 @@ describe('TimerReset', () => {
   })
 
   describe('unless resettable', () => {
-    let text
+    let propsData
     let wrapper
+    let text
 
     beforeEach(() => {
-      const getters = {'timer/resettable': () => false}
-      const store = new Vuex.Store({getters})
-      wrapper = shallow(TimerReset, {store})
+      propsData = {
+        running: false,
+        pausing: false
+      }
+      wrapper = shallow(TimerReset, {propsData})
       text = wrapper.find('.timer-reset > span')
     })
 

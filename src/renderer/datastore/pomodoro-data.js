@@ -4,7 +4,7 @@ import db from './db'
 const data = db.pomodoro
 const today = format(new Date(), 'YYYY/MM/DD')
 
-const pomodoro = {
+const pomodoroData = {
   update() {
     return new Promise((resolve, reject) =>
       data.update({date: today}, {$inc: {count: 1}}, {upsert: true, returnUpdatedDocs: true}, (err, _, docs) => {
@@ -24,4 +24,4 @@ const pomodoro = {
   }
 }
 
-export default pomodoro
+export default pomodoroData

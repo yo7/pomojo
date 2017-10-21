@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PreferencesSelect renders correctly 1`] = `
+<label class="preferences-select"><select class="select"><option value="1">
+      1
+    </option><option value="2" selected="selected">
+      2
+    </option><option value="3">
+      3
+    </option></select></label>
+`;

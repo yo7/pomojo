@@ -1,24 +1,16 @@
 <template>
   <div class="timer-counter">
-    {{ formattedTime }}
+    {{ text }}
   </div>
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
-import * as tray from '../../helpers/tray'
-
 export default {
-  computed: {
-    ...mapGetters({
-      formattedTime: 'timer/formattedTime'
-    })
-  },
-  mounted() {
-    tray.initialize()
-  },
-  updated() {
-    tray.update(this.formattedTime)
+  props: {
+    text: {
+      type: String,
+      required: true
+    }
   }
 }
 </script>
@@ -32,7 +24,7 @@ export default {
   align-items: center;
   height: 50%;
   justify-content: center;
-  font-size: 3.5rem;
+  font-size: 4rem;
   font-weight: 500;
 }
 </style>

@@ -1,4 +1,4 @@
-const formatTime = seconds => divide(seconds).map(v => pad(v)).join(':')
+const formatSeconds = seconds => divide(seconds).map(v => pad(v)).join(':')
 
 const pad = v => v.toString().padStart(2, '0')
 
@@ -10,4 +10,4 @@ const divide = seconds => {
   return [mm, ss]
 }
 
-export default formatTime
+export default formatSeconds

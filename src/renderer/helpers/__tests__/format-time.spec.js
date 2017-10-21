@@ -1,6 +1,6 @@
-import formatTime from '../format-time'
+import formatTime from '../format-seconds'
 
-describe('formatTime', () => {
+describe('formatSeconds', () => {
   it('format seconds to human reabable text', () => {
     expect(formatTime(1500)).toBe('25:00')
   })

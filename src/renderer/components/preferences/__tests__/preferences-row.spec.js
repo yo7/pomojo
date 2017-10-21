@@ -1,18 +1,14 @@
 import {shallow} from 'vue-test-utils'
 import {createRenderer} from 'vue-server-renderer'
-import TimerCounter from '../timer-counter.vue'
+import PreferencesRow from '../preferences-row.vue'
 
-describe('TimerCounter', () => {
-  let wrapper
+describe('PreferencesRow', () => {
+  const wrapper = shallow(PreferencesRow, {propsData: {
+    title: 'Title'
+  }})
 
-  beforeEach(() => {
-    wrapper = shallow(TimerCounter, {propsData: {
-      text: '25:00'
-    }})
-  })
-
-  it('renders counter', () => {
-    expect(wrapper.text()).toContain('25:00')
+  it('renders title', () => {
+    expect(wrapper.find('.title').text()).toBe('Title')
   })
 
   it('renders correctly', () => {

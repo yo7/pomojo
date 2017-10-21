@@ -1,18 +1,15 @@
 import {shallow} from 'vue-test-utils'
 import {createRenderer} from 'vue-server-renderer'
-import TimerCounter from '../timer-counter.vue'
+import app from '../../../helpers/app'
+import PreferencesQuit from '../preferences-quit.vue'
 
-describe('TimerCounter', () => {
-  let wrapper
+describe('Preferences Quit', () => {
+  const wrapper = shallow(PreferencesQuit)
 
-  beforeEach(() => {
-    wrapper = shallow(TimerCounter, {propsData: {
-      text: '25:00'
-    }})
-  })
-
-  it('renders counter', () => {
-    expect(wrapper.text()).toContain('25:00')
+  it('close app on clicked', () => {
+    jest.spyOn(app, 'close')
+    wrapper.trigger('click')
+    expect(app.close).toHaveBeenCalled()
   })
 
   it('renders correctly', () => {

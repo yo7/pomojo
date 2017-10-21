@@ -1,5 +1,5 @@
 <template>
-  <div class="timer-today">
+  <div class="timer-today" v-show="hasGoal">
     <div class="text">
       {{ today }}/{{ goal }}
     </div>
@@ -8,19 +8,11 @@
 </template>
 
 <script>
-import {mapGetters, mapActions} from 'vuex'
-
 export default {
   name: 'timer-today',
   props: {
-    resting: {
-      type: Boolean,
-      default: false,
-      required: true
-    },
     today: {
       type: Number,
-      default: 0,
       requried: true
     },
     goal: {
@@ -29,17 +21,14 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      percentage: 'timer/percentage'
-    })
-  },
-  methods: {
-    ...mapActions({
-      initializeToday: 'timer/initializeToday'
-    })
-  },
-  mounted() {
-    this.initializeToday()
+    percentage() {
+      if (this.hasGoal) {
+        return (this.today / this.goal) * 100
+      }
+    },
+    hasGoal() {
+      return this.goal > 0
+    }
   }
 }
 </script>

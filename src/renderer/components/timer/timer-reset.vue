@@ -1,25 +1,32 @@
 <template>
   <div class="timer-reset">
-    <span v-show="resettable" @click="reset">
+    <span v-show="resettable" @click="onClicked">
       reset
     </span>
   </div>
 </template>
 
 <script>
-import {mapGetters, mapActions} from 'vuex'
-
 export default {
   name: 'timer-reset',
-  computed: {
-    ...mapGetters({
-      resettable: 'timer/resettable'
-    })
+  props: {
+    running: {
+      type: Boolean,
+      required: true
+    },
+    pausing: {
+      type: Boolean,
+      required: true
+    },
+    onClicked: {
+      type: Function,
+      requied: true
+    }
   },
-  methods: {
-    ...mapActions({
-      reset: 'timer/reset'
-    })
+  computed: {
+    resettable() {
+      return this.running && this.pausing
+    }
   }
 }
 </script>
@@ -32,7 +39,7 @@ export default {
   font-size: 1.2rem;
   font-weight: 600;
   color: $highlight;
-  margin-top: 0.5rem;
+  height: 10%;
 
   span {
     cursor: pointer;
