@@ -3,10 +3,10 @@
     <input
       type="checkbox"
       id="switch"
-      :class="checked"
+      class="switch"
       :checked="checked"
       @change="onChanged">
-    <label for="switch"></label>
+    <label class="label" for="switch"></label>
   </span>
 </template>
 
@@ -29,10 +29,10 @@ export default {
 <style lang="scss" scoped>
 @import "../../style/color";
 
-input {
+.switch {
   display: none;
 
-  &:checked + label {
+  &:checked + .label {
     background-color: $highlight;
 
     &:after {
@@ -41,7 +41,7 @@ input {
   }
 }
 
-label {
+.label {
   position:relative;
   display: block;
   cursor: pointer;
