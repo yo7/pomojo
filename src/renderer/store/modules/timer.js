@@ -50,7 +50,7 @@ const timer = {
     onExpired: async ({commit, state, dispatch}) => {
       if (state.resting) {
         await dispatch('reset')
-        dispatch('sendNotification', {title: 'Break has finished!', body: 'Move on to next pomodoro!'})
+        return dispatch('sendNotification', {title: 'Break has finished!', body: 'Move on to next pomodoro!'})
       }
 
       try {
