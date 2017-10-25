@@ -1,6 +1,6 @@
 {
   "name": "Pomojo",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Pomodoro app to make work joyful",
   "main": "dist/main/index.js",
   "scripts": {
