@@ -1,4 +1,4 @@
 import {ipcRenderer} from 'electron'
 
-export const initialize = () => update('')
-export const update = text => ipcRenderer.send('update-timer', text)
+export const initializeTray = () => updateTray('')
+export const updateTray = text => ipcRenderer.send('updateTray-timer', text)

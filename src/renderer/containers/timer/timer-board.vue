@@ -25,6 +25,7 @@ import TimerCounter from '../../components/timer/timer-counter'
 import TimerButton from '../../components/timer/timer-button'
 import TimerReset from '../../components/timer/timer-reset'
 import TimerToday from '../../components/timer/timer-today'
+import {updateTray} from '../../helpers/tray'
 
 export default {
   name: 'timer-board',
@@ -58,6 +59,11 @@ export default {
   created() {
     if (!this.running) {
       this.loadSeconds()
+    }
+  },
+  watch: {
+    formattedSeconds() {
+     updateTray(this.formattedSeconds)
     }
   }
 }
