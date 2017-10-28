@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import TimerBoard from '../components/timer/timer-board.vue'
-import PreferencesBoard from '../components/preferences/preferences-board.vue'
+import TimerBoard from '../containers/timer/timer-board.vue'
+import PreferencesBoard from '../containers/preferences/preferences-board.vue'
 
 Vue.use(VueRouter)
 

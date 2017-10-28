@@ -45,10 +45,10 @@
 
 <script>
 import {mapState, mapActions} from 'vuex'
-import PreferencesRow from './preferences-row'
-import PreferencesSelect from './preferences-select'
-import PreferencesSwitch from './preferences-switch'
-import PreferencesQuit from './preferences-quit'
+import PreferencesRow from '../../components/preferences/preferences-row'
+import PreferencesSelect from '../../components/preferences/preferences-select'
+import PreferencesSwitch from '../../components/preferences/preferences-switch'
+import PreferencesQuit from '../../components/preferences/preferences-quit'
 
 export default {
   name: 'preferences-board',

@@ -21,10 +21,10 @@
 
 <script>
 import {mapState, mapGetters, mapActions} from 'vuex'
-import TimerCounter from './timer-counter'
-import TimerButton from './timer-button'
-import TimerReset from './timer-reset'
-import TimerToday from './timer-today'
+import TimerCounter from '../../components/timer/timer-counter'
+import TimerButton from '../../components/timer/timer-button'
+import TimerReset from '../../components/timer/timer-reset'
+import TimerToday from '../../components/timer/timer-today'
 
 export default {
   name: 'timer-board',
@@ -52,12 +52,10 @@ export default {
     ...mapActions({
       toggle: 'timer/toggle',
       reset: 'timer/reset',
-      loadSeconds: 'timer/loadSeconds',
-      loadToday: 'timer/loadToday'
+      loadSeconds: 'timer/loadSeconds'
     })
   },
-  mounted() {
-    this.loadToday()
+  created() {
     if (!this.running) {
       this.loadSeconds()
     }

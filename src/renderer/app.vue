@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="app">
     <base-navigation></base-navigation>
     <base-board></base-board>
   </div>
@@ -7,7 +7,7 @@
 
 <script>
 import BaseNavigation from './components/base-navigation'
-import BaseBoard from './components/base-board'
+import BaseBoard from './containers/base-board'
 
 export default {
   name: 'app',
@@ -23,7 +23,7 @@ export default {
 @import './style/typography.scss';
 @import './style/color.scss';
 
-.container {
+.app {
   border-radius: 5px;
   height: 420px;
   width: 280px;

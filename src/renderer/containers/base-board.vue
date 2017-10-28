@@ -1,5 +1,5 @@
 <template>
-  <div class="board">
+  <div class="base-board">
     <router-view></router-view>
   </div>
 </template>
@@ -14,20 +14,22 @@ export default {
       loadWorkMinutes: 'preferences/loadWorkMinutes',
       loadRestMinutes: 'preferences/loadRestMinutes',
       loadGoal: 'preferences/loadGoal',
-      loadNotification: 'preferences/loadNotification'
+      loadNotification: 'preferences/loadNotification',
+      loadToday: 'timer/loadToday'
     })
   },
-  mounted() {
+  created() {
     this.loadWorkMinutes()
     this.loadRestMinutes()
     this.loadGoal()
     this.loadNotification()
+    this.loadToday()
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.board {
+.base-board {
   height: 90%;
 }
 </style>
