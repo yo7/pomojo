@@ -16,29 +16,35 @@ describe('BaseBoard', () => {
       'preferences/loadWorkMinutes': jest.fn(),
       'preferences/loadRestMinutes': jest.fn(),
       'preferences/loadGoal': jest.fn(),
-      'preferences/loadNotification': jest.fn()
+      'preferences/loadNotification': jest.fn(),
+      'timer/loadToday': jest.fn()
     }
     store = new Vuex.Store({actions})
   })
 
-  it('load work minutes preference on mounted', () => {
+  it('load work minutes preference on created', () => {
     shallow(BaseBoard, {store})
     expect(actions['preferences/loadWorkMinutes']).toHaveBeenCalled()
   })
 
-  it('load rest minutes preference on mounted', () => {
+  it('load rest minutes preference on created', () => {
     shallow(BaseBoard, {store})
     expect(actions['preferences/loadRestMinutes']).toHaveBeenCalled()
   })
 
-  it('load goal preference on mounted', () => {
+  it('load goal preference on created', () => {
     shallow(BaseBoard, {store})
     expect(actions['preferences/loadGoal']).toHaveBeenCalled()
   })
 
-  it('load noticication preference on mounted', () => {
+  it('load noticication preference on created', () => {
     shallow(BaseBoard, {store})
     expect(actions['preferences/loadNotification']).toHaveBeenCalled()
+  })
+
+  it('load pomodoro count of today preference on created', () => {
+    shallow(BaseBoard, {store})
+    expect(actions['timer/loadToday']).toHaveBeenCalled()
   })
 
   it('renders correctly', () => {

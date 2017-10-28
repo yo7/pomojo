@@ -23,15 +23,9 @@ describe('TimerBoard', () => {
     'timer/pausable': jest.fn()
   }
   const actions = {
-    'timer/loadSeconds': jest.fn(),
-    'timer/loadToday': jest.fn()
+    'timer/loadSeconds': jest.fn()
   }
   const store = new Vuex.Store({state, getters, actions})
-
-  it('load today on mounted', () => {
-    shallow(TimerBoard, {store})
-    expect(actions['timer/loadToday']).toHaveBeenCalled()
-  })
 
   it('load seconds on mounted unless timer is running', () => {
     shallow(TimerBoard, {store})

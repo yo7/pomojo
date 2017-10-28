@@ -63,7 +63,7 @@ export default {
   },
   watch: {
     formattedSeconds() {
-     updateTray(this.formattedSeconds)
+      updateTray(this.formattedSeconds)
     }
   }
 }

@@ -1,5 +1,5 @@
 import {ipcRenderer} from 'electron'
-import { initializeTray, updateTray } from '../tray'
+import {initializeTray, updateTray} from '../tray'
 
 describe('tray', () => {
   it('triggers updateTray-timer event of ipcRenerer with given text on updateTray', () => {
