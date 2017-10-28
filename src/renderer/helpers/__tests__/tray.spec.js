@@ -1,14 +1,14 @@
 import {ipcRenderer} from 'electron'
-import * as tray from '../tray'
+import { initializeTray, updateTray } from '../tray'
 
 describe('tray', () => {
-  it('triggers update-timer event of ipcRenerer with given text on update', () => {
-    tray.update('25:00')
-    expect(ipcRenderer.send).toHaveBeenCalledWith('update-timer', '25:00')
+  it('triggers updateTray-timer event of ipcRenerer with given text on updateTray', () => {
+    updateTray('25:00')
+    expect(ipcRenderer.send).toHaveBeenCalledWith('updateTray-timer', '25:00')
   })
 
-  it('triggers update-timer envent of ipcRenderer with empty text on initialize', () => {
-    tray.initialize()
-    expect(ipcRenderer.send).toHaveBeenCalledWith('update-timer', '')
+  it('triggers updateTray-timer envent of ipcRenderer with empty text on initializeTray', () => {
+    initializeTray()
+    expect(ipcRenderer.send).toHaveBeenCalledWith('updateTray-timer', '')
   })
 })
